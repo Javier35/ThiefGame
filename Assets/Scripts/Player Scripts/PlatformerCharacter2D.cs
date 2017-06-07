@@ -46,6 +46,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     private void Update()
     {
 		m_Grounded = groundchecker.grounded;
+		animator.SetFloat ("Yspeed", m_Rigidbody2D.velocity.y);
 		animator.SetBool("InGround", m_Grounded);
 		animator.SetBool ("OnEdge", groundchecker.teetering);
     }
@@ -67,7 +68,6 @@ public class PlatformerCharacter2D : MonoBehaviour
         }
 		
 		JumpBehavior(jump);
-		animator.SetFloat ("Yspeed", m_Rigidbody2D.velocity.y);
     }
 
 	void DashBehavior(){
