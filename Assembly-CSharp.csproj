@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\KnifeThrow.cs" />
+     <Compile Include="Assets\ProjectileBehavior.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Destroyable.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Movable.cs" />
      <Compile Include="Assets\Scripts\Collectibles\Collectible.cs" />
@@ -71,6 +73,7 @@
      <Compile Include="Assets\Scripts\Helping Attatchments\ReceiveDamage.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\SpriteEffector.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\StickToCamera.cs" />
+     <Compile Include="Assets\Scripts\Helping Attatchments\TriggerHitHandlers.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\ActivateCheckpoint.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\BackgroundScroll.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\Checkpoint.cs" />
@@ -91,6 +94,7 @@
      <Compile Include="Assets\Scripts\Player Scripts\PlayerReceiveDamage.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\ReduceHitboxWhileCrouching.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\SpecialTerrainChecker.cs" />
+     <Compile Include="Assets\ThrowProjectile.cs" />
  <Reference Include="UnityEngine.Analytics">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>

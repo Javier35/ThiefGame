@@ -15,6 +15,8 @@ public class PlayerInputController : MonoBehaviour
 
 	private Rigidbody2D rbody;
 
+	Animator armAnimator;
+
 	bool crouch;
 	float inputAxis;
 
@@ -26,8 +28,12 @@ public class PlayerInputController : MonoBehaviour
 
 	private void Update()
 	{
+		armAnimator = transform.Find ("Arm").GetComponent<Animator>();
+
 		InterpreteKeys ();
 		SetDashingValue ();
+		SetAttackAnimation ();
+
 		inputAxis = Input.GetAxisRaw ("Horizontal");
 
 		m_Character.Move(inputAxis, crouch, m_Jump, m_Dash);
@@ -39,7 +45,6 @@ public class PlayerInputController : MonoBehaviour
 
 		if (!m_Jump)
 		{
-			// Read the jump input in Update so button presses aren't missed.
 			if (Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.Space))
 				m_Jump = true;
 			else
@@ -47,29 +52,12 @@ public class PlayerInputController : MonoBehaviour
 		}
 
 		if(Input.GetKeyDown(KeyCode.R))
-			//SceneManagement.Scene
 			SceneManager.LoadScene("AlphaLayout");
-
-		if (Input.GetKeyDown (KeyCode.X)) {
-//			m_Character.animator.SetTrigger ("Attack");
-//			m_Character.animator.SetBool ("Run", false);
-		}
-
-//		if (Input.GetKeyUp (KeyCode.DownArrow)) {
-//			m_Character.animator.SetBool ("Crouch", false);
-//		}
 
 		if (m_Character.animator.GetBool ("InGround") && Input.GetAxisRaw ("Horizontal") != 0)
 			m_Character.animator.SetBool ("Run", true);
 		else
 			m_Character.animator.SetBool ("Run", false);
-
-//		//if it is moving forward while jumping, switch the layer to display the forward jumping animation
-//		if (Input.GetAxisRaw ("Horizontal") != 0 && !m_Character.animator.GetBool ("InGround")) {
-//			m_Character.animator.SetLayerWeight (1, 1);
-//		} else {
-//			m_Character.animator.SetLayerWeight (1, 0);
-//		}
 	}
 
 	private void SetDashingValue(){
@@ -85,7 +73,7 @@ public class PlayerInputController : MonoBehaviour
 			(!m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == 1) ||
 			(dashTimer >= 0.3 )	){
 
-				StopDashing (0.3f);
+				StopDashing (0.15f);
 				return;
 			}
 
@@ -95,7 +83,7 @@ public class PlayerInputController : MonoBehaviour
 
 		} else if(pushDashFlag && Input.GetKeyUp (KeyCode.C)){
 
-			StopDashing (0.14f);
+			StopDashing (0.10f);
 			return;
 
 		} else {
@@ -103,6 +91,29 @@ public class PlayerInputController : MonoBehaviour
 			m_Character.animator.SetBool ("Dash", false);
 			m_Dash = false;
 			dashTimer = 0;
+		}
+	}
+
+	void SetAttackAnimation(){
+
+		if (Input.GetKeyDown (KeyCode.X) && 
+			!m_Character.animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
+			!m_Character.animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+
+			armAnimator.SetTrigger ("Swing");
+		}
+
+		if (m_Character.animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
+			m_Character.animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+
+			armAnimator.CrossFade ("Invisible", 0);
+			armAnimator.ResetTrigger ("Swing");
+		}
+
+		if (armAnimator.GetCurrentAnimatorStateInfo (0).IsName ("Swing")) {
+			m_Character.animator.SetLayerWeight (1, 1);
+		} else {
+			m_Character.animator.SetLayerWeight (1, 0);
 		}
 	}
 
