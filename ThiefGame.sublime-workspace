@@ -1,0 +1,513 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"M",
+				"GetComponent(string type)\tComponent"
+			],
+			[
+				"even",
+				"eventOffset"
+			],
+			[
+				"ans",
+				"answerpath2"
+			],
+			[
+				"Mermao",
+				"mermaidDialogue2"
+			],
+			[
+				"check",
+				"checkResponses"
+			],
+			[
+				"phas",
+				"Phaser"
+			],
+			[
+				"Destin",
+				"pathDestination"
+			],
+			[
+				"fold",
+				"foldername"
+			],
+			[
+				"merm",
+				"mermaidDialogue1"
+			],
+			[
+				"dia",
+				"currentDialogue"
+			],
+			[
+				"curr",
+				"currentDialogue"
+			],
+			[
+				"show",
+				"showText"
+			],
+			[
+				"load",
+				"loadNext"
+			],
+			[
+				"tex",
+				"textArray"
+			],
+			[
+				"text",
+				"textSize"
+			],
+			[
+				"lette",
+				"lettersCounter"
+			],
+			[
+				"twee",
+				"tweenLetter"
+			],
+			[
+				"lett",
+				"letterObjects"
+			],
+			[
+				"genera",
+				"generateTextArray"
+			],
+			[
+				"f",
+				"functions"
+			],
+			[
+				"let",
+				"letterReferences"
+			],
+			[
+				"me",
+				"mermaidFadeIn"
+			],
+			[
+				"de",
+				"defaultDisplacement"
+			],
+			[
+				"m",
+				"maid"
+			],
+			[
+				"righ",
+				"rightDefaultX"
+			],
+			[
+				"le",
+				"leftDefaultX"
+			],
+			[
+				"merma",
+				"mermaidTween"
+			],
+			[
+				"ce",
+				"centerX"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"Preload",
+				"preload_bar"
+			],
+			[
+				"prel",
+				"preload_bar"
+			],
+			[
+				"preload",
+				"preloader_bar"
+			],
+			[
+				"Game",
+				"GameState"
+			],
+			[
+				"ti",
+				"title\tTag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Assets/Scripts/Player Scripts/PlayerInputController.cs",
+			"settings":
+			{
+				"buffer_size": 2945,
+				"encoding": "UTF-8 with BOM",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Assets/Scripts/Player Scripts/PlatformerCharacter2D.cs",
+			"settings":
+			{
+				"buffer_size": 6161,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 213.0,
+		"last_filter": "package inst",
+		"selected_items":
+		[
+			[
+				"package inst",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 162.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/35jav/Documents/GitHub/ThiefGame/Assets/Scripts",
+		"/C/Users/35jav/Documents/GitHub/ThiefGame/Assets/Scripts/Player Scripts"
+	],
+	"file_history":
+	[
+		"/C/Users/35jav/Documents/GitHub/ThiefGame/ThiefGame.sublime-project",
+		"/C/Program Files (x86)/Torchlight 2 Rapid Respec/Help/help.html",
+		"/C/xampp/htdocs/phaser/Faces/js/TextBehavior.js",
+		"/C/Program Files/Unity/Editor/Data/Documentation/en/Manual/class-BoxCollider2D.html",
+		"/C/Program Files/Unity/Editor/Data/Documentation/en/ScriptReference/MonoBehaviour.html",
+		"/C/xampp/htdocs/phaser/Faces/js/IntroState.js",
+		"/C/xampp/htdocs/phaser/Faces/js/Preloader.js",
+		"/C/xampp/htdocs/phaser/Faces/index.html",
+		"/C/xampp/htdocs/phaser/Faces/js/PromptBehavior.js",
+		"/C/xampp/htdocs/phaser/Faces/js/SpriteBehavior.js",
+		"/C/CISCO_CCNA/Exploration1IntSpanish/index.html",
+		"/C/Users/35jav/Desktop/phaser-examples-master/tasks/examples.js",
+		"/C/xampp/htdocs/phaser/Faces/js/phaser.js",
+		"/C/Users/35jav/AppData/Local/Temp/Rar$DIa0.467/Nodes.cpp",
+		"/C/Users/35jav/Desktop/siso2/Tarea4/ejercicio3.js",
+		"/C/Users/35jav/Desktop/siso2/Tarea4/ejercicio2.js",
+		"/C/Users/35jav/Desktop/Ejercicio4/Ejercicio4b.js",
+		"/C/Users/35jav/Desktop/siso2/Ejercicio4a.js",
+		"/C/Users/35jav/Desktop/Ejercicio4/Ej4a.js",
+		"/C/Users/35jav/Desktop/Ejercicio4/Ejercicio4.js",
+		"/C/Users/35jav/Desktop/siso2/Tarea4/ejercicio1.js",
+		"/C/Users/35jav/Documents/Ej4a.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_01_drive_c_props.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_05_folder_props.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_07_argumentos.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_06_folder_filelist.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejercicio_02_folder_file_vejez.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejercicio_01_file_folder_list.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_04_file_props.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_03_create_file.js",
+		"/C/Users/35jav/Desktop/siso2/WSH/Ejemplo_02_drives_props.js",
+		"/C/Users/35jav/Documents/GitHub/Phaser-Visual-Novel/js/IntroState.js",
+		"/C/Users/35jav/Documents/GitHub/Phaser-Visual-Novel/js/TextBehavior.js",
+		"/C/xampp/htdocs/phaser/Faces/js/Boot.js",
+		"/C/Users/35jav/Documents/Projects/phaser-es6-boilerplate-master/gulpfile.js",
+		"/C/xampp/htdocs/phaser/Faces/js/CharacterBehavior.js",
+		"/C/Users/35jav/Desktop/Tarea4/ejercicio3.js",
+		"/C/Users/35jav/Desktop/Tarea4/ejercicio2.js",
+		"/C/Users/35jav/Desktop/Tarea4/ejercicio1.js",
+		"/C/xampp/htdocs/phaser/Faces/js/HelpingFunctions.js",
+		"/C/xampp/htdocs/index.php",
+		"/C/Users/35jav/Desktop/WSH/Ejemplo_01_drive_c_props.js",
+		"/C/xampp/htdocs/phaser/PhaserTest/js/main.js",
+		"/C/xampp/htdocs/phaser/Faces/js/Main.js",
+		"/C/xampp/htdocs/phaser/Faces/js/MainMenu.js",
+		"/C/xampp/htdocs/phaser/Faces/js/test.js",
+		"/C/xampp/htdocs/phaser/PhaserTest/index.html",
+		"/C/xampp/htdocs/phaser/PhaserTest/js/phaser.js",
+		"/C/Users/35jav/Documents/Projects/PhaserTest/index.html",
+		"/C/Users/35jav/Documents/Projects/PhaserTest/js/main.js",
+		"/C/Users/35jav/Documents/Projects/PhaserTest/js/phaser.js"
+	],
+	"find":
+	{
+		"height": 43.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"DashBehavior",
+			"rbody",
+			"crouch",
+			"eventOffset",
+			"currentDialogueIndex",
+			"eventReady",
+			"optionSelected",
+			"loadNext",
+			"optionTrigger",
+			"button",
+			"label",
+			"button",
+			"currentDialogueFinished",
+			"destination",
+			"origin",
+			"fo",
+			"destination",
+			"origin",
+			"copyArchives",
+			"fso",
+			"fo",
+			"copySubFolders",
+			"main",
+			");\n",
+			"apply",
+			"ActiveXObject(\"Scripting.FileSystemObject\")",
+			"ActiveXObject",
+			"ease",
+			"tween(",
+			"tween",
+			"to(",
+			"to",
+			"AUTO"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"optionSelected",
+			"path2",
+			"path1",
+			"path2",
+			"path1",
+			"copyXml",
+			"copyFolders"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Assets/Scripts/Player Scripts/PlayerInputController.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								605,
+								605
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"1079,1084": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"1476,1481": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"1552,1557": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"19,24": "Using directive is not used by code and can be removed safely.",
+								"362,363": "Initializing field by default value is redundant"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 309.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Assets/Scripts/Player Scripts/PlatformerCharacter2D.cs",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6161,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4234,
+								4234
+							]
+						],
+						"settings":
+						{
+							"oops":
+							{
+								"0,5": "Using directive is not used by code and can be removed safely.",
+								"1108,1119": "The private field 'm_EdgeCheck' is never assigned",
+								"1306,1314": "Name should have prefix '_'. (Rule 'Fields').",
+								"1431,1444": "after '_' a lower letter should follow. (Rule 'Fields')",
+								"1541,1546": "Initializing field by default value is redundant",
+								"1573,1578": "Initializing field by default value is redundant",
+								"2448,2452": "Comparison of floating point numbers can be unequal due to the differing precision of the two values.",
+								"2743,2747": "Parameter can be IComparable",
+								"286,297": "after '_' a lower letter should follow. (Rule 'Fields')",
+								"33,38": "Using directive is not used by code and can be removed safely.",
+								"4023,4025": "Convert to '?:' expression",
+								"438,450": "Convert to constant",
+								"453,458": "Initializing field by default value is redundant",
+								"4731,4735": "'this.' is redundant and can be removed safely.",
+								"6050,6058": "Parameter can be IComparable",
+								"686,703": "Convert to constant",
+								"933,943": "after '_' a lower letter should follow. (Rule 'Fields')"
+							},
+							"syntax": "Packages/Unity3D/UnityC#.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1979.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 130.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 130.0
+	},
+	"pinned_build_system": "",
+	"project": "ThiefGame.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 224.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

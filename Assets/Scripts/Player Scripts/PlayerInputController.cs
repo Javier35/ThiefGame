@@ -13,11 +13,7 @@ public class PlayerInputController : MonoBehaviour
 	private bool pushDashFlag = true;
 	float dashTimer = 0;
 
-	private Rigidbody2D rbody;
-
 	Animator armAnimator;
-
-	bool crouch;
 	float inputAxis;
 
 	private void Awake()
@@ -36,7 +32,7 @@ public class PlayerInputController : MonoBehaviour
 
 		inputAxis = Input.GetAxisRaw ("Horizontal");
 
-		m_Character.Move(inputAxis, crouch, m_Jump, m_Dash);
+		m_Character.Move(inputAxis, m_Jump, m_Dash);
 		m_Jump = false;
 	}
 

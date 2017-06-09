@@ -52,26 +52,19 @@ public class PlatformerCharacter2D : MonoBehaviour
     }
 
 
-	public void Move(float move, bool crouch, bool jump, bool dash){
+	public void Move(float move, bool jump, bool dash){
 
         if (animator.GetBool("InGround") && move != 0)
             animator.SetBool("Run", true);
 
-//		//check if there is ceiling on top, if not, the character may stand up
-//		SetCrouch (crouch);
-
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
-			DashBehavior ();
 			MovementBehavior (move, dash);
         }
 		
 		JumpBehavior(jump);
     }
-
-	void DashBehavior(){
-	}
 
 
 	void MovementBehavior(float move, bool dash){
@@ -97,15 +90,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 		//If damaged, these force the movement to be a knockback motion instead of normal Movement
 		KnockBackWhileDamaged ();
-	}
-
-
-	public void Dashing(){
-		
-	}
-
-	public void StopDashing(){
-		
 	}
 
 	private void FlipToFaceVelocity(float move){
@@ -178,7 +162,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 		m_Grounded = false;
 		animator.SetBool ("InGround", false);
 		animator.SetBool ("Jump", true);
-		//animator.SetBool ("Crouch", false);
 		m_Rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
 	}
 
@@ -186,7 +169,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 		m_Grounded = false;
 		animator.SetBool ("InGround", false);
 		animator.SetBool ("Fall", true);
-		//animator.SetBool ("Crouch", false);
 	}
 
     private void Flip()
