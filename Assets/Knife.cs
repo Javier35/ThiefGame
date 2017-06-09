@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KnifeThrow : MonoBehaviour {
+public class Knife : ProjectileBehavior {
 
 	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
 	void Update () {
-		
+		rbody.velocity = new Vector2 (speed * direction, rbody.velocity.y);
 	}
 }
