@@ -39,32 +39,34 @@ public class DeadzoneFollow : MonoBehaviour {
 		characterDeltaX = character.transform.position.x - transform.position.x;
 		characterDeltaY = character.transform.position.y - transform.position.y;
 
-		if (Mathf.Abs (characterDeltaX) > xMovementThreshold) {
-			var velX = rbody.velocity.x;
-			if (velX == 0) {
-				difX = characterDeltaX - xMovementThreshold;
-				velX = lastVelX;
-			} else {
-				difX = characterDeltaX + (Mathf.Sign (velX) * -1 * xMovementThreshold);
-			}
+//		if (Mathf.Abs (characterDeltaX) > xMovementThreshold) {
+//			var velX = rbody.velocity.x;
+//			if (velX == 0) {
+//				difX = characterDeltaX - xMovementThreshold;
+//				velX = lastVelX;
+//			} else {
+//				difX = characterDeltaX + (Mathf.Sign (velX) * -1 * xMovementThreshold);
+//			}
+//
+//			var targerPos = new Vector3 (
+//				transform.position.x + difX,
+//				transform.position.y,
+//				transform.position.z
+//			);
+//
+//			lastVelX = velX;
+//			transform.position = Vector3.MoveTowards (transform.position, targerPos, Mathf.Abs(velX) * Time.deltaTime);
+//		}
 
-			var targerPos = new Vector3 (
-				transform.position.x + difX,
-				transform.position.y,
-				transform.position.z
-			);
+		transform.position = new Vector3 (character.transform.position.x, transform.position.y, transform.position.z);
 
-			lastVelX = velX;
-			transform.position = Vector3.MoveTowards (transform.position, targerPos, Mathf.Abs(velX) * Time.deltaTime);
-		}
-
-		if (Mathf.Abs (characterDeltaY) > yMovementThreshold) {
+		if (Mathf.Abs (characterDeltaY) > yMovementThreshold - 0.4f) {
 			var velY = rbody.velocity.y;
 			if (velY == 0) {
-				difY = characterDeltaY - yMovementThreshold; 
+				difY = characterDeltaY - yMovementThreshold - 0.4f; 
 				velY = lastVelY;
 			} else {
-				difY = characterDeltaY + (Mathf.Sign (velY) * -1 * yMovementThreshold);
+				difY = characterDeltaY + (Mathf.Sign (velY) * -1 * (yMovementThreshold - 0.4f));
 			}
 
 			var targerPos = new Vector3 (
