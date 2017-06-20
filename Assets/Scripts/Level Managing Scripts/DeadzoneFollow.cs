@@ -5,24 +5,15 @@ using UnityEngine;
 public class DeadzoneFollow : MonoBehaviour {
 
 	[SerializeField] GameObject character;
-	Rigidbody2D rbody;
-	private Vector3 moveTemp;
-
-	public float xMovementThreshold = 0.4f;
+	public GameObject currentLevel;
 	public float yMovementThreshold = 1.4f;
-
-	float characterDeltaX;
 	float characterDeltaY;
-	float difX = 0.0f;
-	float difY = 0.0f;
-
-	float lastVelX = 0;
-	float lastVelY = 0;
-
+	private Vector3 minBounds;
+	private Vector3 maxBounds;
 	bool allowFollow = true;
 
-	void Awake(){
-		rbody = character.GetComponent<Rigidbody2D> ();
+	void Start(){
+		SetCameraBounds ();
 		moveOntoPlayer ();
 	}
 
@@ -36,47 +27,15 @@ public class DeadzoneFollow : MonoBehaviour {
 
 	private void deadzoneFollow(){
 		
-		characterDeltaX = character.transform.position.x - transform.position.x;
 		characterDeltaY = character.transform.position.y - transform.position.y;
+		var clampedX = Mathf.Clamp(character.transform.position.x, minBounds.x, maxBounds.x);
 
-//		if (Mathf.Abs (characterDeltaX) > xMovementThreshold) {
-//			var velX = rbody.velocity.x;
-//			if (velX == 0) {
-//				difX = characterDeltaX - xMovementThreshold;
-//				velX = lastVelX;
-//			} else {
-//				difX = characterDeltaX + (Mathf.Sign (velX) * -1 * xMovementThreshold);
-//			}
-//
-//			var targerPos = new Vector3 (
-//				transform.position.x + difX,
-//				transform.position.y,
-//				transform.position.z
-//			);
-//
-//			lastVelX = velX;
-//			transform.position = Vector3.MoveTowards (transform.position, targerPos, Mathf.Abs(velX) * Time.deltaTime);
-//		}
-
-		transform.position = new Vector3 (character.transform.position.x, transform.position.y, transform.position.z);
-
-		if (Mathf.Abs (characterDeltaY) > yMovementThreshold - 0.4f) {
-			var velY = rbody.velocity.y;
-			if (velY == 0) {
-				difY = characterDeltaY - yMovementThreshold - 0.4f; 
-				velY = lastVelY;
-			} else {
-				difY = characterDeltaY + (Mathf.Sign (velY) * -1 * (yMovementThreshold - 0.4f));
-			}
-
-			var targerPos = new Vector3 (
-				transform.position.x,
-				transform.position.y + (difY),
-				transform.position.z
-			);
-
-			lastVelY = velY;
-			transform.position = Vector3.MoveTowards (transform.position, targerPos, (Mathf.Abs(velY)) * Time.deltaTime);
+		if (characterDeltaY > yMovementThreshold) {
+			transform.position = new Vector3 (clampedX, character.transform.position.y - yMovementThreshold, transform.position.z);
+		} else if (characterDeltaY < -yMovementThreshold) {
+			transform.position = new Vector3 (clampedX, character.transform.position.y + yMovementThreshold, transform.position.z);
+		} else {
+			transform.position = new Vector3 (clampedX, transform.position.y, transform.position.z);
 		}
 	}
 
@@ -90,5 +49,28 @@ public class DeadzoneFollow : MonoBehaviour {
 
 	private void moveOntoPlayer(){
 		transform.position = new Vector3 (character.transform.position.x, character.transform.position.y + yMovementThreshold, transform.position.z);
+	}
+
+	private void SetCameraBounds(){
+		Bounds bounds = new Bounds(currentLevel.transform.position, Vector3.zero);
+
+		foreach(Renderer renderer in currentLevel.GetComponentsInChildren<Renderer>())
+		{
+			bounds.Encapsulate(renderer.bounds);
+		}
+
+		minBounds = GetVertexWorldPosition (bounds.min, currentLevel.transform);
+		maxBounds = GetVertexWorldPosition (bounds.max, currentLevel.transform);
+
+		float height = 2f * Camera.main.orthographicSize;
+		float width = height * Camera.main.aspect;
+
+		minBounds = new Vector3 (minBounds.x + width/2, minBounds.y + height/2);
+		maxBounds = new Vector3 (maxBounds.x - width/2, maxBounds.y);
+	}
+
+	public Vector3 GetVertexWorldPosition(Vector3 vertex, Transform owner)
+	{
+		return owner.localToWorldMatrix.MultiplyPoint3x4(vertex);
 	}
 }﻿ 

@@ -28,7 +28,7 @@ public class BackgroundScroll : MonoBehaviour {
 	}
 
 	private void LateUpdate(){
-		
+
 		float deltaX = cameraTransform.position.x - lastCameraX;
 		transform.position = new Vector3 (transform.position.x + (deltaX * paralaxSpeed), transform.position.y, transform.position.z);
 		lastCameraX = cameraTransform.position.x;

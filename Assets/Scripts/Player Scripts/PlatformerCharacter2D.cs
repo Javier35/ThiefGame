@@ -27,7 +27,6 @@ public class PlatformerCharacter2D : MonoBehaviour
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_Damaged = false;
 	private bool jumpLock = false;
-
 	private GroundChecker groundchecker;
 	private SpecialTerrainChecker terrainChecker;
 
@@ -69,26 +68,20 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	void MovementBehavior(float move, bool dash){
 
-		if (dash)
+		if (dash) {
 			if (m_FacingRight)
 				move = 1.5f;
 			else
 				move = -1.5f;
+		}
+			
 
 		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") || animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 			move = 0;
 		}
 
-		//if he is attacking, he shouldnt move
-		if ((animator.GetCurrentAnimatorStateInfo(0).IsName ("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName ("SecondAttack")) 
-			&& animator.GetBool ("InGround")){
-			move = 0;
-		}
-
 		SetPlayerVelocityX (move);
 		FlipToFaceVelocity(move);
-
-		//If damaged, these force the movement to be a knockback motion instead of normal Movement
 		KnockBackWhileDamaged ();
 	}
 
