@@ -13,10 +13,9 @@ public abstract class ProjectileBehavior : MonoBehaviour {
 
 	void Start(){
 		rbody = GetComponent<Rigidbody2D> ();
-
 	}
 
-	private void DeactivateSelf(){
+	protected void DeactivateSelf(){
 		this.gameObject.SetActive (false);
 	}
 

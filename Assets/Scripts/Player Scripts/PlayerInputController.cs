@@ -48,7 +48,7 @@ public class PlayerInputController : MonoBehaviour
 		}
 
 		if(Input.GetKeyDown(KeyCode.R))
-			SceneManager.LoadScene("AlphaLayout");
+			SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
 
 		if (m_Character.animator.GetBool ("InGround") && Input.GetAxisRaw ("Horizontal") != 0)
 			m_Character.animator.SetBool ("Run", true);

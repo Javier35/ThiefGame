@@ -62,20 +62,6 @@ public class PlayerDamageManager : DamageManager {
 		levelManager.RespawnPlayer ();
 	}
 
-//	public void EnableAttackBox(){
-//		attackBox.enabled = true;
-//		Nudge();
-//	}
-//	public void DisableAttackBox(){
-//		attackBox.enabled = false;
-//		GetComponentInChildren<AttackTriggerManager> ().ResetEnemyDamage ();
-//	}
-
-	//move it a little bit just to wake up the physics engine
-	public void Nudge(){
-		this.transform.position = this.transform.position + (new Vector3 (0.0001f, 0f, 0f));
-	}
-
 	override public void Respawn(){
 		DestroySelf ();
 	}

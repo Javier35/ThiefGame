@@ -48,10 +48,10 @@ public class Inventory : MonoBehaviour {
 	}
 
 	private void SetLivesCounterText(int livesNum){
-		_inventory.livesCounterText.text = "x" + livesNum;
+//		_inventory.livesCounterText.text = "x" + livesNum;
 	}
 
 	private void SetMoneyCounterText(double moneyNum){
-		_inventory.moneyCounterText.text = ": " + moneyNum;
+//		_inventory.moneyCounterText.text = ": " + moneyNum;
 	}
 }

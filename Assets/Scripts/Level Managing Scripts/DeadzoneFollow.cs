@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeadzoneFollow : MonoBehaviour {
+public class DeadzoneFollow : PlayerFollow {
 
-	[SerializeField] GameObject character;
 	public GameObject currentLevel;
 	public float yMovementThreshold = 1.4f;
 	float characterDeltaY;
 	private Vector3 minBounds;
 	private Vector3 maxBounds;
-	bool allowFollow = true;
 
 	void Start(){
 		SetCameraBounds ();
-		moveOntoPlayer ();
+		moveToPlayer ();
 	}
 
 	void Update() {
@@ -39,15 +37,7 @@ public class DeadzoneFollow : MonoBehaviour {
 		}
 	}
 
-	public void StopFollowing(){
-		allowFollow = false;
-	}
-	public void StartFollowing(){
-		allowFollow = true;
-		moveOntoPlayer ();
-	}
-
-	private void moveOntoPlayer(){
+	override public void moveToPlayer(){
 		transform.position = new Vector3 (character.transform.position.x, character.transform.position.y + yMovementThreshold, transform.position.z);
 	}
 

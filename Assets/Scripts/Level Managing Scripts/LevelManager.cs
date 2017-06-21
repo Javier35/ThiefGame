@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find ("Moxi");
+		player = GameObject.Find ("Cricket");
 		fader = gameObject.GetComponent<Fading> ();
 	}
 
@@ -23,16 +23,11 @@ public class LevelManager : MonoBehaviour {
 		Inventory.LoseALife ();
 		if (checkGameOver()) {
 			//game over logic
-			SceneManager.LoadScene("LT1");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 			return;
 		}
 
 		player.transform.position = currentCheckpoint.transform.position;
-
-		player.transform.position = new Vector3 (
-			currentCheckpoint.transform.position.x, 
-			currentCheckpoint.transform.position.y - 0.35f,
-			player.transform.position.z);
 		
 		player.GetComponent<PlayerDamageManager> ().Heal (99);
 		player.GetComponent<PlayerDamageManager> ().BecomeInvincible ();

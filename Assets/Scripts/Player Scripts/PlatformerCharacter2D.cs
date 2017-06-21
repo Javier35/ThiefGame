@@ -67,12 +67,13 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 
 	void MovementBehavior(float move, bool dash){
+		var dashMove = 1.5f;
 
 		if (dash) {
 			if (m_FacingRight)
-				move = 1.5f;
+				move = dashMove;
 			else
-				move = -1.5f;
+				move = -dashMove;
 		}
 			
 

@@ -74,10 +74,10 @@
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\HandlesEx.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapDrawingUtils.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapUtils.cs" />
-     <Compile Include="Assets\DashPoofGenerator.cs" />
-     <Compile Include="Assets\PoofBehavior.cs" />
+     <Compile Include="Assets\Scripts\Abstracts\DamageManager.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Destroyable.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Movable.cs" />
+     <Compile Include="Assets\Scripts\Abstracts\PlayerFollow.cs" />
      <Compile Include="Assets\Scripts\Abstracts\ProjectileBehavior.cs" />
      <Compile Include="Assets\Scripts\Collectibles\Collectible.cs" />
      <Compile Include="Assets\Scripts\Collectibles\HealthCollectible.cs" />
@@ -92,7 +92,6 @@
      <Compile Include="Assets\Scripts\Helping Attatchments\BounceOnTop.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\CollidersManager.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\CollisionManager.cs" />
-     <Compile Include="Assets\Scripts\Helping Attatchments\DamageManager.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\DealDamage.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\Float.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\HitHandler.cs" />
@@ -104,6 +103,7 @@
      <Compile Include="Assets\Scripts\Helping Attatchments\PixelPerfectCamera\PixelPerfectCamera.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\PixelPerfectCamera\PixelSnap.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\PixelPerfectCamera\Scroller.cs" />
+     <Compile Include="Assets\Scripts\Helping Attatchments\PoofBehavior.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\Pushable.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\ReceiveDamage.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\SpriteEffector.cs" />
@@ -118,10 +118,10 @@
      <Compile Include="Assets\Scripts\Level Managing Scripts\JumpDownPlatform.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\PitEffects.cs" />
-     <Compile Include="Assets\Scripts\Level Managing Scripts\PlayerFollow.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\SpecialTerrain.cs" />
      <Compile Include="Assets\Scripts\Level Managing Scripts\StartPoint.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\AttackTriggerManager.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\DashPoofGenerator.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\GroundChecker.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\Knife.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlatformerCharacter2D.cs" />

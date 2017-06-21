@@ -8,4 +8,8 @@ public class Knife : ProjectileBehavior {
 	void Update () {
 		rbody.velocity = new Vector2 (speed * direction, rbody.velocity.y);
 	}
+
+	void OnCollisionEnter2D(Collision2D col){
+		DeactivateSelf ();
+	}
 }
