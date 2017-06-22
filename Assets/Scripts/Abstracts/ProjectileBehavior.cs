@@ -11,11 +11,11 @@ public abstract class ProjectileBehavior : MonoBehaviour {
 
 	protected Rigidbody2D rbody;
 
-	void Start(){
+	void Awake(){
 		rbody = GetComponent<Rigidbody2D> ();
 	}
 
-	protected void DeactivateSelf(){
+	virtual protected void DeactivateSelf(){
 		this.gameObject.SetActive (false);
 	}
 

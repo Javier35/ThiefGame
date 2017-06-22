@@ -22,7 +22,7 @@ public class PlayerInputController : MonoBehaviour
 	}
 
 
-	private void Update()
+	private void LateUpdate()
 	{
 		armAnimator = transform.Find ("Arm").GetComponent<Animator>();
 

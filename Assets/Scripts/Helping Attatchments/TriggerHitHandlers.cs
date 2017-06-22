@@ -20,4 +20,8 @@ public class TriggerHitHandlers : MonoBehaviour {
 			}
 		}
 	}
+
+	public void ClearHittedList (){
+		objectsHit.Clear ();
+	}
 }

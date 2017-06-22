@@ -25,19 +25,5 @@ public class AttackTriggerManager : MonoBehaviour {
 		}
 
 	}
-
-	private void ShowHitEffect(){
-		GetComponentInChildren<Animator> ().SetTrigger ("Hit1");
-	}
-
-	public void ResetEnemyDamage(){
-		if (enemyRefs.Count > 0) {
-			foreach(var item in enemyRefs)
-			{
-				var go = (GameObject)item;
-				go.GetComponent<EnemyDamageManager> ().ResetDamage ();
-			}
-			enemyRefs.Clear ();
-		}
-	}
+		
 }

@@ -6,9 +6,8 @@ public abstract class DamageManager : Destroyable {
 	public int health = 3;
 	public int maxHealth = 5;
 	public int damage = 1;
-	public bool invincible = false;
-
-	public Animator animator;
+	[HideInInspector]public bool invincible = false;
+	[HideInInspector]public Animator animator;
 
 	void Awake(){
 		animator = gameObject.GetComponent<Animator> ();

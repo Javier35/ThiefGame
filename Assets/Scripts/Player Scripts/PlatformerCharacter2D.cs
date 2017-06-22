@@ -42,7 +42,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		terrainChecker = GetComponentInChildren<SpecialTerrainChecker>();
     }
 		
-    private void Update()
+    private void LateUpdate()
     {
 		m_Grounded = groundchecker.grounded;
 		animator.SetFloat ("Yspeed", m_Rigidbody2D.velocity.y);
