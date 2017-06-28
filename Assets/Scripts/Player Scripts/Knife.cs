@@ -13,6 +13,7 @@ public class Knife : ProjectileBehavior {
 
 	override protected void DeactivateSelf(){
 		ClearHittedList ();
+		CancelInvoke();
 		this.gameObject.SetActive (false);
 	}
 
@@ -22,6 +23,10 @@ public class Knife : ProjectileBehavior {
 
 	void OnCollisionEnter2D(Collision2D col){
 		DeactivateSelf ();
+	}
+
+	void OnBecameInvisible(){
+		DeactivateSelf();
 	}
 
 	void OnTriggerEnter2D(Collider2D col){

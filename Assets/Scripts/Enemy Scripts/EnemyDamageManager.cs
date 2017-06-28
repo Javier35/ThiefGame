@@ -8,6 +8,7 @@ public class EnemyDamageManager : DamageManager {
 	private ItemDropModule itemDropper;
 	private LevelManager levelManager;
 	private GameObject player;
+	public GameObject deathPoof;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,7 @@ public class EnemyDamageManager : DamageManager {
 	}
 
 	public override void ReceiveDamage(int damage){
-		Debug.Log ("ouch");
+		//Debug.Log ("ouch");
 		health -= damage;
 
 		if (health > 0) {
@@ -49,7 +50,7 @@ public class EnemyDamageManager : DamageManager {
 		} else {
 			Destroy (gameObject);
 		}
-		//poof
+		Instantiate(deathPoof, this.transform.position, this.transform.rotation);
 	}
 
 	void Deactivate(){
