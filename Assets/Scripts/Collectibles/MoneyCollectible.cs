@@ -7,7 +7,7 @@ public class MoneyCollectible : Collectible {
 
 	void Start(){
 		SetLevelManager ();
-		spawned = true;
+		spawned = false;
 	}
 
 	void OnTriggerEnter2D (Collider2D col){

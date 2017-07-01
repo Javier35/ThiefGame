@@ -6,7 +6,9 @@ public class Collectible : Destroyable {
 
 	public LevelManager levelManager;
 	private Collider2D thisCollider;
-	private bool bounced = false;
+
+	[SerializeField] GameObject messageIndicator;
+	private GameObject message;
 
 	void Start(){
 		spriteEffector = GetComponent<SpriteEffector> ();
@@ -14,22 +16,6 @@ public class Collectible : Destroyable {
 
 	public void SetLevelManager(){
 		levelManager = GameObject.Find ("LevelManager").GetComponent<LevelManager>();
-		thisCollider = gameObject.GetComponent<BoxCollider2D> ();
-	}
-
-	void OnCollisionEnter2D (Collision2D col){
-		if (col.gameObject.tag != "Platform") {
-			var otherCollider = col.gameObject.GetComponent<Collider2D> ();
-			Physics2D.IgnoreCollision (otherCollider, thisCollider);
-		} else {
-
-			if (!bounced) {
-				bounced = true;
-				Vector2 contactPoint = col.contacts[0].normal;
-
-				GetComponent<Rigidbody2D> ().AddForce (col.contacts[0].normal * 1.5f, ForceMode2D.Impulse );
-			}
-		}
 	}
 
 	override public void DestroySelf(){
@@ -38,6 +24,11 @@ public class Collectible : Destroyable {
 			gameObject.SetActive (false);
 		} else {
 			Destroy (gameObject);
+		}
+
+		if (messageIndicator != null) {
+			Vector3 spawnPos = this.transform.position;
+			Instantiate (messageIndicator, spawnPos, this.transform.rotation); 
 		}
 	}
 

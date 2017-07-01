@@ -74,12 +74,13 @@
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\HandlesEx.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapDrawingUtils.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapUtils.cs" />
+     <Compile Include="Assets\PopMessageBehavior.cs" />
+     <Compile Include="Assets\Scripts\Abstracts\Collectible.cs" />
      <Compile Include="Assets\Scripts\Abstracts\DamageManager.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Destroyable.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Movable.cs" />
      <Compile Include="Assets\Scripts\Abstracts\PlayerFollow.cs" />
      <Compile Include="Assets\Scripts\Abstracts\ProjectileBehavior.cs" />
-     <Compile Include="Assets\Scripts\Collectibles\Collectible.cs" />
      <Compile Include="Assets\Scripts\Collectibles\HealthCollectible.cs" />
      <Compile Include="Assets\Scripts\Collectibles\LifeCollectible.cs" />
      <Compile Include="Assets\Scripts\Collectibles\MoneyCollectible.cs" />
