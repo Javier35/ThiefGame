@@ -1,8 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Level Managing Scripts/BackgroundScroll.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Abstracts/Collectible.cs">
     <Files>
       <File FileName="Assets/Scripts/Level Managing Scripts/BackgroundScroll.cs" Line="27" Column="34" />
+      <File FileName="Assets/Scripts/Abstracts/Collectible.cs" Line="30" Column="47" />
+      <File FileName="Assets/Scripts/Collectibles/LifeCollectible.cs" Line="15" Column="17" />
+      <File FileName="Assets/Scripts/Collectibles/HealthCollectible.cs" Line="7" Column="15" />
+      <File FileName="Assets/Scripts/Collectibles/MoneyCollectible.cs" Line="14" Column="3" />
+      <File FileName="Assets/PopMessageBehavior.cs" Line="7" Column="17" />
+      <File FileName="Assets/Scripts/Player Scripts/ThrowProjectile.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

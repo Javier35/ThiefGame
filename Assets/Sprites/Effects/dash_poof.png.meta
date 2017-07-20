@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: e8669c1a363b0404880c109d78a3cd80
-timeCreated: 1497991627
+guid: 19aeb06bc21674ef9af313e04a6786d9
+timeCreated: 1500567799
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: dash poof_0
-    21300002: dash poof_1
-    21300004: dash poof_2
-    21300006: dash poof_3
-    21300008: dash poof_4
+    21300000: dash_poof_0
+    21300002: dash_poof_1
+    21300004: dash_poof_2
+    21300006: dash_poof_3
+    21300008: dash_poof_4
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -58,7 +58,7 @@ TextureImporter:
   - buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -66,7 +66,7 @@ TextureImporter:
   - buildTarget: Standalone
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -74,7 +74,7 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -82,7 +82,7 @@ TextureImporter:
   - buildTarget: Android
     maxTextureSize: 2048
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -91,7 +91,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dash poof_0
+      name: dash_poof_0
       rect:
         serializedVersion: 2
         x: 0
@@ -104,7 +104,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dash poof_1
+      name: dash_poof_1
       rect:
         serializedVersion: 2
         x: 32
@@ -117,7 +117,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dash poof_2
+      name: dash_poof_2
       rect:
         serializedVersion: 2
         x: 64
@@ -130,7 +130,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dash poof_3
+      name: dash_poof_3
       rect:
         serializedVersion: 2
         x: 96
@@ -143,7 +143,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: dash poof_4
+      name: dash_poof_4
       rect:
         serializedVersion: 2
         x: 128

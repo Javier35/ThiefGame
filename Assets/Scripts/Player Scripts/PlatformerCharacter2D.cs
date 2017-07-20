@@ -22,13 +22,14 @@ public class PlatformerCharacter2D : MonoBehaviour
 	private Transform m_EdgeCheck;   // A position marking where to check for ceilings
 
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
-    public Animator animator;            // Reference to the player's animator component.
+	[HideInInspector]public Animator animator;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_Damaged = false;
 	private bool jumpLock = false;
 	private GroundChecker groundchecker;
 	private SpecialTerrainChecker terrainChecker;
+	[SerializeField]float dashMove = 1.7f;
 
     private void Awake()
     {
@@ -67,7 +68,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 
 	void MovementBehavior(float move, bool dash){
-		var dashMove = 1.5f;
 
 		if (dash) {
 			if (m_FacingRight)
