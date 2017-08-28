@@ -3,8 +3,6 @@ using System.Collections;
 
 public class EnemyDamageManager : DamageManager {
 
-	public float deathTime = 1f;
-
 	private ItemDropModule itemDropper;
 	private LevelManager levelManager;
 	private GameObject player;

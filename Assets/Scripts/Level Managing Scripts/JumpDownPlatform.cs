@@ -18,7 +18,7 @@ public class JumpDownPlatform : SpecialTerrain {
 		if(Input.GetKey(KeyCode.DownArrow)){
 			var characterComponent = gObject.GetComponent<PlatformerCharacter2D> ();
 
-			var childHitboxContainer = gObject.transform.FindChild ("PhysicalColliders");
+			var childHitboxContainer = gObject.transform.Find ("PhysicalColliders");
 
 			if (childHitboxContainer != null) {
 				var otherCollider = childHitboxContainer.GetComponent<BoxCollider2D> ();

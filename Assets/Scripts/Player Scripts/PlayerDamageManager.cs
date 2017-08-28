@@ -42,7 +42,7 @@ public class PlayerDamageManager : DamageManager {
 					animator.SetTrigger("Death");
 				}
 
-				Knockback ();
+				// Knockback ();
 				BecomeInvincible ();
 			}
 	}

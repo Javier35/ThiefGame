@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Movable : MonoBehaviour {
 
-
+	protected SpriteRenderer renderer;
 	protected Rigidbody2D rbody;
 	protected Animator animator;
 	protected GameObject player;
@@ -20,6 +20,7 @@ public class Movable : MonoBehaviour {
 
 	void Awake () {
 
+		renderer = GetComponent<SpriteRenderer>();
 		rbody = GetComponent<Rigidbody2D> ();
 		animator = GetComponent<Animator> ();
 		spawnPosition = gameObject.transform.position;
@@ -63,8 +64,9 @@ public class Movable : MonoBehaviour {
 	}
 
 	protected bool checkIfActive(){
-		if (activationCondition == "visible" && visible ||
-			activationCondition == "proximity" && near ||
+		if (
+			(activationCondition == "visible" && renderer.isVisible) ||
+			(activationCondition == "proximity" && near) ||
 			activationCondition == "always") {
 			return true;
 		}

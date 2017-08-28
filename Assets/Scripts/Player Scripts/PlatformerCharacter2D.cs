@@ -28,7 +28,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	private bool m_Damaged = false;
 	private bool jumpLock = false;
 	private GroundChecker groundchecker;
-	private SpecialTerrainChecker terrainChecker;
+	// private SpecialTerrainChecker terrainChecker;
 	[SerializeField]float dashMove = 1.7f;
 
     private void Awake()
@@ -40,7 +40,7 @@ public class PlatformerCharacter2D : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		originalMaxSpeed = m_MaxSpeed;
 		groundchecker = GetComponentInChildren<GroundChecker>();
-		terrainChecker = GetComponentInChildren<SpecialTerrainChecker>();
+		// terrainChecker = GetComponentInChildren<SpecialTerrainChecker>();
     }
 		
     private void LateUpdate()
@@ -83,7 +83,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 		SetPlayerVelocityX (move);
 		FlipToFaceVelocity(move);
-		KnockBackWhileDamaged ();
+		// KnockBackWhileDamaged ();
 	}
 
 	private void FlipToFaceVelocity(float move){
@@ -131,12 +131,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
 
 			if (!jumpLock) {
-				if (terrainChecker.specialTerrain != null) {
-					terrainChecker.specialTerrain.JumpEvent (this.gameObject);
-					terrainChecker.specialTerrain = null;
-				} else {
+				// if (terrainChecker.specialTerrain != null) {
+				// 	terrainChecker.specialTerrain.JumpEvent (this.gameObject);
+				// 	terrainChecker.specialTerrain = null;
+				// } else {
 					DoJump (m_JumpForce);
-				}
+				// }
 			}
 
 			//if the player didnt jump, but is in the air, he should be falling
