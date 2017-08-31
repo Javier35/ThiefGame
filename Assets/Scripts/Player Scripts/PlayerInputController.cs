@@ -79,7 +79,7 @@ public class PlayerInputController : MonoBehaviour
 
 		} else if(pushDashFlag && Input.GetKeyUp (KeyCode.C)){
 
-			StopDashing (0.10f);
+			StopDashing (0.08f);
 			return;
 
 		} else {

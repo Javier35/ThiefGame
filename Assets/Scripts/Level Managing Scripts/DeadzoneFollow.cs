@@ -15,7 +15,7 @@ public class DeadzoneFollow : PlayerFollow {
 		moveToPlayer ();
 	}
 
-	void Update() {
+	void LateUpdate() {
 
 		if (allowFollow) {
 			deadzoneFollow();
