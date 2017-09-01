@@ -12,6 +12,7 @@ public class Movable : MonoBehaviour {
 	protected Vector3 spawnPosition;
 	protected bool visible = false;
 	protected bool near = false;
+	protected float currentBehaviorState = -1;
 
 	public string activationCondition = "visible";
 
@@ -40,6 +41,7 @@ public class Movable : MonoBehaviour {
 			faceLeft = originalFaceLeft;
 		}
 		gameObject.transform.position = spawnPosition;
+		currentBehaviorState = -1;
 		visible = false;
 	}
 
