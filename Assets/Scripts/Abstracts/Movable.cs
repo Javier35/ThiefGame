@@ -40,9 +40,13 @@ public class Movable : MonoBehaviour {
 			Flip ();
 			faceLeft = originalFaceLeft;
 		}
-		gameObject.transform.position = spawnPosition;
 		currentBehaviorState = -1;
+		rbody.velocity = new Vector3 (0, 0, 0);
+		gameObject.transform.position = spawnPosition;
 		visible = false;
+
+		if (animator != null)
+			animator.Rebind ();
 	}
 
 	public void Flip () {
@@ -72,6 +76,14 @@ public class Movable : MonoBehaviour {
 			activationCondition == "always") {
 			return true;
 		}
+		return false;
+	}
+
+	protected bool CheckInTransformArea (Transform transform, float areaSize, LayerMask layers){
+
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.1f, layers);
+		if (colliders.Length > 0)
+			return true;
 		return false;
 	}
 }

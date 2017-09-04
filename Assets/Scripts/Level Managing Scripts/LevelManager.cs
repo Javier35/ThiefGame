@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour {
 		var allEnemies = GameObject.FindObjectsOfType<EnemyDamageManager> ();
 
 		foreach (EnemyDamageManager enemy in allEnemies) {
-			enemy.Heal (999);
+			enemy.Heal (99);
 		}
 	}
 

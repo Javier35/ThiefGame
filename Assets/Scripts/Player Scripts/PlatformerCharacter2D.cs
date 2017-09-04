@@ -16,7 +16,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 //    private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     const float k_GroundedRadius = .15f; // Radius of the overlap circle to determine if grounded
-    public bool m_Grounded;            // Whether or not the player is grounded.
+	[HideInInspector] public bool m_Grounded;            // Whether or not the player is grounded.
 
     private Transform m_CeilingCheck;   // A position marking where to check for ceilings
 	private Transform m_EdgeCheck;   // A position marking where to check for ceilings
@@ -24,7 +24,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
 	[HideInInspector]public Animator animator;            // Reference to the player's animator component.
     private Rigidbody2D m_Rigidbody2D;
-    public bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	[HideInInspector] public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_Damaged = false;
 	private bool jumpLock = false;
 	private GroundChecker groundchecker;
@@ -64,8 +64,17 @@ public class PlatformerCharacter2D : MonoBehaviour
         }
     }
 
-
+	bool lastDash = false;
 	void MovementBehavior(float move, bool dash){
+
+		if (lastDash == true && dash == false) {
+			var underCeilng = CheckInTransformArea (m_CeilingCheck, .1f, m_WhatIsGround);
+
+			if (underCeilng) {
+				dash = true;
+				animator.SetBool ("Dash", true);
+			}
+		}
 
 		if (dash) {
 			if(move != 0){
@@ -74,11 +83,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 				move = m_FacingRight ? dashMove : -dashMove;
 			}
 		}
-			
 
 		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") || animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 			move = 0;
 		}
+
+		lastDash = dash;
 
 		SetPlayerVelocityX (move);
 		FlipToFaceVelocity(move);
@@ -162,11 +172,11 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	}
 
-	float maxJumpSpeed = 2.5f;
+	float maxJumpSpeed = 2.7f;
 	public void DoJump(float jumpForce){
 		// Add a vertical force to the player.
-		jumpLock = true;
-		Invoke ("UnlockJumping", 0.1f);
+//		jumpLock = true;
+//		Invoke ("UnlockJumping", 0.1f);
 
 		m_Grounded = false;
 		animator.SetBool ("InGround", false);
@@ -196,9 +206,9 @@ public class PlatformerCharacter2D : MonoBehaviour
 		m_Damaged = true;
 	}
 
-	private void UnlockJumping(){
-		jumpLock = false;
-	}
+//	private void UnlockJumping(){
+//		jumpLock = false;
+//	}
 
 	public float GetMaxSpeed(){
 		return m_MaxSpeed;
@@ -214,6 +224,14 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	public void RestoreMaxSpeed(){
 		m_MaxSpeed = originalMaxSpeed;
+	}
+
+	protected bool CheckInTransformArea (Transform transform, float areaSize, LayerMask layers){
+
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, areaSize, layers);
+		if (colliders.Length > 0)
+			return true;
+		return false;
 	}
 }
 

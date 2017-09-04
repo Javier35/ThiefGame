@@ -23,7 +23,7 @@ public class Behavior_basic : Movable {
 			if (!animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
 				!animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 
-				if (!CheckFrontGround () || CheckWallCollision ())
+				if (!CheckInTransformArea(FrontGroundCheck, 0.1f, WhatIsPlatform) || CheckWallCollision ())
 					Flip ();
 
 				Move ();
@@ -44,21 +44,6 @@ public class Behavior_basic : Movable {
 			}
 		}
 		return false;
-	}
-
-	private bool CheckFrontGround (){
-
-		bool found = false;
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(FrontGroundCheck.position, 0.1f, WhatIsPlatform);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject.tag == "Platform"){
-				//Flip ();
-				found = true;
-				break;
-			}
-		}
-		return found;
 	}
 
 	private void Move(){

@@ -54,7 +54,7 @@ public class PlayerInputController : MonoBehaviour
 			m_Character.animator.SetBool ("Run", false);
 	}
 
-	float dashDelay = 0.05f;
+	float dashCooldown = 0.05f;
 	private void SetDashingValue(){
 
 		if (!pushDashFlag && dashEnabled && Input.GetKeyDown (KeyCode.C)) {
@@ -68,7 +68,7 @@ public class PlayerInputController : MonoBehaviour
 				// (!m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == 1) ||
 				(dashTimer >= 0.3 )	){
 
-				StopDashing (dashDelay);
+				StopDashing (dashCooldown);
 				return;
 			}
 
@@ -78,7 +78,7 @@ public class PlayerInputController : MonoBehaviour
 
 		} else if(pushDashFlag && Input.GetKeyUp (KeyCode.C)){
 
-			StopDashing (dashDelay);
+			StopDashing (dashCooldown);
 			
 		} else {
 			
@@ -111,13 +111,13 @@ public class PlayerInputController : MonoBehaviour
 		}
 	}
 
-	void StopDashing(float dashAgainDelay){
+	void StopDashing(float cooldown){
 		dashTimer = 0;
 		m_Character.animator.SetBool ("Dash", false);
 		m_Dash = false;
 		dashEnabled = false;
 		pushDashFlag = false;
-		Invoke ("ToggleDashEnabled", dashAgainDelay);
+		Invoke ("ToggleDashEnabled", cooldown);
 	}
 
 	void ToggleDashEnabled(){

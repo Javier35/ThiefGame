@@ -58,6 +58,7 @@ public class EnemyDamageManager : DamageManager {
 	override public void Respawn(){
 
 		gameObject.SetActive(true);
+		Heal (99);
 		gameObject.GetComponent<EnemyDamageManager> ().spriteEffector.stopFlicker ();
 		//Debug.Log (transform.position);
 	}
