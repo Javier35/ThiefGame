@@ -6,10 +6,10 @@ public class Behavior_drillbird : Movable {
 	
 	float flightHeight = 0;
 	float xOffset = 1.6f;
+	float drillDelay = 0.9f;
 	int moveDir;
-	float flySpeed = 3.2f;
-	float drillSpeed = 3.2f;
-	float drillDistance;
+	public float flySpeed = 3.2f;
+	public float drillSpeed = 3.2f;
 
 	Camera mainCamera;
 	GameObject playerRef;
@@ -17,12 +17,15 @@ public class Behavior_drillbird : Movable {
 	BoxCollider2D[] boxColliders;
 	PolygonCollider2D polygonCollider;
 	Vector3 finalPos;
+	Transform backWallCheck;
+	[SerializeField] private LayerMask WhatIsPlatform;
 
 	void Start()
 	{
 		playerRef = GameObject.Find ("Cricket");
 		mainCamera = Camera.main;
 		anim = GetComponent<Animator>();
+		backWallCheck = transform.Find("BackWallCheck");
 
 		var collidersChild = this.transform.Find ("TriggerColliders");
 		boxColliders = collidersChild.GetComponents<BoxCollider2D>();
@@ -31,7 +34,7 @@ public class Behavior_drillbird : Movable {
 		float flightDistanceY;
 		RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, 100f, 1 << LayerMask.NameToLayer("Platform"));
 		if (hit.collider != null) {
-            flightDistanceY = hit.distance - 0.85f;
+            flightDistanceY = hit.distance - 0.95f;
         }else{
 			flightDistanceY =  2f * mainCamera.orthographicSize - 0.85f;
 		}
@@ -53,10 +56,9 @@ public class Behavior_drillbird : Movable {
 			var dir = Mathf.Sign(xOffset);
 			rbody.velocity = new Vector2( drillSpeed * moveDir, rbody.velocity.y);
 
-
-			if((this.transform.position.x < playerRef.transform.position.x - 1 && moveDir == -1) ||
-			(this.transform.position.x > playerRef.transform.position.x + 1 && moveDir == 1)){
-
+			if((this.transform.position.x < playerRef.transform.position.x - 0.5 && moveDir == -1) ||
+			(this.transform.position.x > playerRef.transform.position.x + 0.5 && moveDir == 1)){
+				
 				setIdleBehavior ();
 			}
 		}
@@ -67,10 +69,11 @@ public class Behavior_drillbird : Movable {
 	{
 		if(currentBehaviorState == -1){
 			currentBehaviorState = 1;
-		}
+			animator.SetBool("Attack", false);
 
-		if (polygonCollider.enabled) {
-			setIdleHitboxes ();
+			if (polygonCollider.enabled) {
+				setIdleHitboxes ();
+			}
 		}
 	}
 
@@ -78,13 +81,14 @@ public class Behavior_drillbird : Movable {
 
 		var origin = this.transform.position;
 
-		if(Vector3.Distance(origin, finalPos) > .1f) {
+		bool backToWall = CheckBackWall();
+		if(Vector3.Distance(origin, finalPos) > .05f && !backToWall) {
 			Vector3 direction = (finalPos - origin).normalized;
 			rbody.velocity = direction * flySpeed;
 		}else{
 			rbody.velocity = new Vector2(0, 0);
 			currentBehaviorState = 0;
-			Invoke ("setDrillBehavior", 0.9f);
+			Invoke ("setDrillBehavior", drillDelay);
 		}
 	}
 
@@ -112,11 +116,21 @@ public class Behavior_drillbird : Movable {
 	}
 
 	void FacePlayer(){
-		if (playerRef.transform.position.x < this.transform.position.x && !faceLeft) {
-			Flip ();
-		}else if(playerRef.transform.position.x > this.transform.position.x && faceLeft){
+		if ((playerRef.transform.position.x < this.transform.position.x && !faceLeft) ||
+		(playerRef.transform.position.x > this.transform.position.x && faceLeft)) {
 			Flip ();
 		}
 	}
 	
+	private bool CheckBackWall (){
+		
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(backWallCheck.position, 0.1f, WhatIsPlatform);
+		for (int i = 0; i < colliders.Length; i++)
+		{
+			if (colliders[i].gameObject.tag == "Platform"){
+				return true;
+			}
+		}
+		return false;
+	}
 }

@@ -48,11 +48,11 @@ public class PlatformerCharacter2D : MonoBehaviour
 		m_Grounded = groundchecker.grounded;
 		animator.SetFloat ("Yspeed", m_Rigidbody2D.velocity.y);
 		animator.SetBool("InGround", m_Grounded);
-		animator.SetBool ("OnEdge", groundchecker.teetering);
+		// animator.SetBool ("OnEdge", groundchecker.teetering);
     }
 
 
-	public void Move(float move, bool jump, bool dash){
+	public void Move(float move, bool dash){
 
         if (animator.GetBool("InGround") && move != 0)
             animator.SetBool("Run", true);
@@ -62,18 +62,17 @@ public class PlatformerCharacter2D : MonoBehaviour
         {
 			MovementBehavior (move, dash);
         }
-		
-		JumpBehavior(jump);
     }
 
 
 	void MovementBehavior(float move, bool dash){
 
 		if (dash) {
-			if (m_FacingRight)
-				move = dashMove;
-			else
-				move = -dashMove;
+			if(move != 0){
+				move = move > 0 ? dashMove : -dashMove;
+			}else{
+				move = m_FacingRight ? dashMove : -dashMove;
+			}
 		}
 			
 
@@ -87,13 +86,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	}
 
 	private void FlipToFaceVelocity(float move){
-		if (move > 0 && !m_FacingRight)
-		{
-			// ... flip the player.
-			Flip();
-		}
-		// Otherwise if the input is moving the player left and the player is facing right...
-		else if (move < 0 && m_FacingRight)
+		if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
 		{
 			// ... flip the player.
 			Flip();
@@ -124,30 +117,52 @@ public class PlatformerCharacter2D : MonoBehaviour
 		}
 	}
 
-	private void JumpBehavior(bool jump){
+	bool lastJumpAction = false;
+	float initialJumpForce = 120;
+	float additiveJumpForce = 70;
+	float jumpTimer = 0;
+	float totalJumpTimer = 0;
+	
+	public void JumpBehavior(bool jump, bool afterJump){
+
+		if( (totalJumpTimer > 0 && afterJump) ||
+		(totalJumpTimer > 0 && totalJumpTimer < 0.1 && !afterJump)){
+			totalJumpTimer += Time.deltaTime;
+			jumpTimer += Time.deltaTime;
+		}else{
+			totalJumpTimer = 0;
+			jumpTimer = 0f;
+		}
+
+		if(jumpTimer > 0.05f){
+			DoJump(additiveJumpForce);
+			jumpTimer = 0f;
+		}
+
+		if(totalJumpTimer >= 0.15){
+			totalJumpTimer = 0;
+			jumpTimer = 0;
+		}
 		
 		if (m_Grounded && jump && animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
 
-			if (!jumpLock) {
-				// if (terrainChecker.specialTerrain != null) {
-				// 	terrainChecker.specialTerrain.JumpEvent (this.gameObject);
-				// 	terrainChecker.specialTerrain = null;
-				// } else {
-					DoJump (m_JumpForce);
-				// }
-			}
+				DoJump (additiveJumpForce);
+				totalJumpTimer += Time.deltaTime;
+				jumpTimer += Time.deltaTime;
 
-			//if the player didnt jump, but is in the air, he should be falling
 		} else if (!m_Grounded && !jump && !animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
-			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
+			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")
+			&& animator.GetFloat("Yspeed") < 0) {
 
-			DoFall ();
+				DoFall ();
 		}
+
 	}
 
+	float maxJumpSpeed = 2.5f;
 	public void DoJump(float jumpForce){
 		// Add a vertical force to the player.
 		jumpLock = true;
@@ -157,6 +172,9 @@ public class PlatformerCharacter2D : MonoBehaviour
 		animator.SetBool ("InGround", false);
 		animator.SetBool ("Jump", true);
 		m_Rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+
+		if(m_Rigidbody2D.velocity.y > maxJumpSpeed)
+			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, maxJumpSpeed);
 	}
 
 	public void DoFall(){

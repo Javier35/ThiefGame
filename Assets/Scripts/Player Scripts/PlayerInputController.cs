@@ -7,6 +7,7 @@ public class PlayerInputController : MonoBehaviour
 {
 	private PlatformerCharacter2D m_Character;
 	private bool m_Jump;
+	private bool afterJumpPress;
 	private bool m_Dash;
 
 	private bool dashEnabled = true;
@@ -32,20 +33,17 @@ public class PlayerInputController : MonoBehaviour
 
 		inputAxis = Input.GetAxisRaw ("Horizontal");
 
-		m_Character.Move(inputAxis, m_Jump, m_Dash);
+		m_Character.Move(inputAxis, m_Dash);
+		m_Character.JumpBehavior(m_Jump, afterJumpPress);
 		m_Jump = false;
 	}
 
 	private void InterpreteKeys () {
 
-
 		if (!m_Jump)
-		{
-			if (Input.GetKeyDown (KeyCode.Z) || Input.GetKeyDown (KeyCode.Space))
-				m_Jump = true;
-			else
-				m_Jump = false;
-		}
+			m_Jump = Input.GetKeyDown (KeyCode.Z) ? true : false;
+
+		afterJumpPress = Input.GetKey (KeyCode.Z) ? true : false;
 
 		if(Input.GetKeyDown(KeyCode.R))
 			SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
@@ -56,6 +54,7 @@ public class PlayerInputController : MonoBehaviour
 			m_Character.animator.SetBool ("Run", false);
 	}
 
+	float dashDelay = 0.05f;
 	private void SetDashingValue(){
 
 		if (!pushDashFlag && dashEnabled && Input.GetKeyDown (KeyCode.C)) {
@@ -65,11 +64,11 @@ public class PlayerInputController : MonoBehaviour
 		if (pushDashFlag && Input.GetKey (KeyCode.C)) {
 
 			if(	!m_Character.m_Grounded ||
-			(m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == -1) ||
-			(!m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == 1) ||
-			(dashTimer >= 0.3 )	){
+				// (m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == -1) ||
+				// (!m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == 1) ||
+				(dashTimer >= 0.3 )	){
 
-				StopDashing (0.15f);
+				StopDashing (dashDelay);
 				return;
 			}
 
@@ -79,9 +78,8 @@ public class PlayerInputController : MonoBehaviour
 
 		} else if(pushDashFlag && Input.GetKeyUp (KeyCode.C)){
 
-			StopDashing (0.08f);
-			return;
-
+			StopDashing (dashDelay);
+			
 		} else {
 			
 			m_Character.animator.SetBool ("Dash", false);
