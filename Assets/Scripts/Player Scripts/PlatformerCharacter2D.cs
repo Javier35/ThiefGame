@@ -26,7 +26,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
 	[HideInInspector] public bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private bool m_Damaged = false;
-	private bool jumpLock = false;
+//	private bool jumpLock = false;
 	private GroundChecker groundchecker;
 	// private SpecialTerrainChecker terrainChecker;
 	[SerializeField]float dashMove = 1.7f;
@@ -127,7 +127,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 		}
 	}
 
-	bool lastJumpAction = false;
 	float initialJumpForce = 120;
 	float additiveJumpForce = 70;
 	float jumpTimer = 0;
