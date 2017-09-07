@@ -27,10 +27,6 @@ public class Behavior_drillbird : Movable {
 		anim = GetComponent<Animator>();
 		backWallCheck = transform.Find("BackWallCheck");
 
-		var collidersChild = this.transform.Find ("TriggerColliders");
-		boxColliders = collidersChild.GetComponents<BoxCollider2D>();
-		polygonCollider = collidersChild.GetComponent<PolygonCollider2D> ();
-
 		float flightDistanceY;
 		RaycastHit2D hit = Physics2D.Raycast(this.transform.position, Vector2.down, 100f, 1 << LayerMask.NameToLayer("Platform"));
 		if (hit.collider != null) {
@@ -68,10 +64,6 @@ public class Behavior_drillbird : Movable {
 	{
 		if(currentBehaviorState == -1){
 			currentBehaviorState = 1;
-
-			if (polygonCollider.enabled) {
-				setIdleHitboxes ();
-			}
 		}
 	}
 
@@ -92,25 +84,13 @@ public class Behavior_drillbird : Movable {
 
 	void setDrillBehavior(){
 		currentBehaviorState = 2;
-		setAttackHitboxes ();
 		anim.SetBool("Attack", true);
 	}
 
 	void setIdleBehavior(){
 		rbody.velocity = new Vector2(0, 0);
 		currentBehaviorState = 1;
-		setIdleHitboxes ();
 		anim.SetBool("Attack", false);
-	}
-
-	void setAttackHitboxes(){
-		foreach(BoxCollider2D bc in boxColliders) bc.enabled = false;
-		polygonCollider.enabled = true;
-	}
-
-	void setIdleHitboxes(){
-		foreach(BoxCollider2D bc in boxColliders) bc.enabled = true;
-		polygonCollider.enabled = false;
 	}
 
 	void FacePlayer(){
