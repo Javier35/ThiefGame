@@ -4,32 +4,26 @@ using System.Collections;
 
 public class PlatformerCharacter2D : MonoBehaviour
 {
-	[SerializeField] private float m_MaxSpeed = 3.9f;                    // The fastest the player can travel in the x axis.
-	private float originalMaxSpeed;
+    
+	[HideInInspector] public bool grounded;
+	[HideInInspector]public Animator animator;
+	[HideInInspector] public bool facingRight = true;
+	[HideInInspector] public float faceDir = 1;
 
-    public float m_JumpForce = 95f;                  // Amount of force added when the player jumps.
-	//private float originalJumpForce;
-
-	[SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
-    [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+	[SerializeField] private bool airControl = true;
+    [SerializeField] private LayerMask m_WhatIsGround;
 	[SerializeField] private float m_KnockbackHeight = 300f;
-
-//    private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
-    const float k_GroundedRadius = .15f; // Radius of the overlap circle to determine if grounded
-	[HideInInspector] public bool m_Grounded;            // Whether or not the player is grounded.
-
-    private Transform m_CeilingCheck;   // A position marking where to check for ceilings
-	private Transform m_EdgeCheck;   // A position marking where to check for ceilings
-
-    const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
-	[HideInInspector]public Animator animator;            // Reference to the player's animator component.
-    private Rigidbody2D m_Rigidbody2D;
-	[HideInInspector] public bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	private bool m_Damaged = false;
-//	private bool jumpLock = false;
-	private GroundChecker groundchecker;
-	// private SpecialTerrainChecker terrainChecker;
 	[SerializeField]float dashMove = 1.7f;
+	[SerializeField] private float maxSpeed = 3.9f;
+
+	private bool damaged = false;
+	GroundChecker groundchecker;
+	Rigidbody2D rbody;
+	Transform m_CeilingCheck;
+	Transform m_EdgeCheck;
+	float originalMaxSpeed;
+	const float k_GroundedRadius = .15f;
+	public float m_JumpForce = 95f;
 
     private void Awake()
     {
@@ -37,17 +31,17 @@ public class PlatformerCharacter2D : MonoBehaviour
 //        m_GroundCheck = transform.Find("GroundCheck");
         m_CeilingCheck = transform.Find("CeilingCheck");
         animator = GetComponent<Animator>();
-        m_Rigidbody2D = GetComponent<Rigidbody2D>();
-		originalMaxSpeed = m_MaxSpeed;
+        rbody = GetComponent<Rigidbody2D>();
+		originalMaxSpeed = maxSpeed;
 		groundchecker = GetComponentInChildren<GroundChecker>();
 		// terrainChecker = GetComponentInChildren<SpecialTerrainChecker>();
     }
 		
     private void LateUpdate()
     {
-		m_Grounded = groundchecker.grounded;
-		animator.SetFloat ("Yspeed", m_Rigidbody2D.velocity.y);
-		animator.SetBool("InGround", m_Grounded);
+		grounded = groundchecker.grounded;
+		animator.SetFloat ("Yspeed", rbody.velocity.y);
+		animator.SetBool("InGround", grounded);
 		// animator.SetBool ("OnEdge", groundchecker.teetering);
     }
 
@@ -58,7 +52,7 @@ public class PlatformerCharacter2D : MonoBehaviour
             animator.SetBool("Run", true);
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
+        if (grounded || airControl)
         {
 			MovementBehavior (move, dash);
         }
@@ -80,7 +74,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 			if(move != 0){
 				move = move > 0 ? dashMove : -dashMove;
 			}else{
-				move = m_FacingRight ? dashMove : -dashMove;
+				move = facingRight ? dashMove : -dashMove;
 			}
 		}
 
@@ -96,7 +90,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	}
 
 	private void FlipToFaceVelocity(float move){
-		if ((move > 0 && !m_FacingRight) || (move < 0 && m_FacingRight))
+		if ((move > 0 && !facingRight) || (move < 0 && facingRight))
 		{
 			// ... flip the player.
 			Flip();
@@ -105,29 +99,28 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	private void SetPlayerVelocityX(float move){
 		// Move the character
-		m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
-		m_MaxSpeed = originalMaxSpeed;
+		rbody.velocity = new Vector2(move * maxSpeed, rbody.velocity.y);
+		maxSpeed = originalMaxSpeed;
 	}
 
 	private void KnockBackWhileDamaged(){
 		//move back while damaged
 		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage")) { 
-			if (m_FacingRight) {
-				m_Rigidbody2D.velocity = new Vector2 (-originalMaxSpeed, m_Rigidbody2D.velocity.y);
+			if (facingRight) {
+				rbody.velocity = new Vector2 (-originalMaxSpeed, rbody.velocity.y);
 			} else {
-				m_Rigidbody2D.velocity = new Vector2(originalMaxSpeed, m_Rigidbody2D.velocity.y);
+				rbody.velocity = new Vector2(originalMaxSpeed, rbody.velocity.y);
 			}
 		}
 	}
 
 	private void KnockUpForce(){
-		if(m_Damaged){
-			m_Damaged = false;
-			m_Rigidbody2D.AddForce (new Vector2 (0f, m_KnockbackHeight));
+		if(damaged){
+			damaged = false;
+			rbody.AddForce (new Vector2 (0f, m_KnockbackHeight));
 		}
 	}
 
-	float initialJumpForce = 120;
 	float additiveJumpForce = 70;
 	float jumpTimer = 0;
 	float totalJumpTimer = 0;
@@ -153,7 +146,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 			jumpTimer = 0;
 		}
 		
-		if (m_Grounded && jump && animator.GetBool ("InGround")
+		if (grounded && jump && animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
 
@@ -161,7 +154,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 				totalJumpTimer += Time.deltaTime;
 				jumpTimer += Time.deltaTime;
 
-		} else if (!m_Grounded && !jump && !animator.GetBool ("InGround")
+		} else if (!grounded && !jump && !animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")
 			&& animator.GetFloat("Yspeed") < 0) {
@@ -173,44 +166,37 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	float maxJumpSpeed = 2.7f;
 	public void DoJump(float jumpForce){
-		// Add a vertical force to the player.
-//		jumpLock = true;
-//		Invoke ("UnlockJumping", 0.1f);
 
-		m_Grounded = false;
+		grounded = false;
 		animator.SetBool ("InGround", false);
 		animator.SetBool ("Jump", true);
-		m_Rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+		rbody.AddForce (new Vector2 (0f, jumpForce));
 
-		if(m_Rigidbody2D.velocity.y > maxJumpSpeed)
-			m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, maxJumpSpeed);
+		if(rbody.velocity.y > maxJumpSpeed)
+			rbody.velocity = new Vector2(rbody.velocity.x, maxJumpSpeed);
 	}
 
 	public void DoFall(){
-		m_Grounded = false;
+		grounded = false;
 		animator.SetBool ("InGround", false);
 		animator.SetBool ("Fall", true);
 	}
 
     private void Flip()
     {
-        // Multiply the player's x local scale by -1.
+		faceDir = -faceDir;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-		m_FacingRight = !m_FacingRight;
+		facingRight = !facingRight;
     }
 
 	public void WasDamaged(){
-		m_Damaged = true;
+		damaged = true;
 	}
 
-//	private void UnlockJumping(){
-//		jumpLock = false;
-//	}
-
 	public float GetMaxSpeed(){
-		return m_MaxSpeed;
+		return maxSpeed;
 	}
 
 	public float GetOriginalMaxSpeed(){
@@ -218,11 +204,11 @@ public class PlatformerCharacter2D : MonoBehaviour
 	}
 
 	public void SetMaxSpeed(float newSpeed){
-		m_MaxSpeed = newSpeed;
+		maxSpeed = newSpeed;
 	}
 
 	public void RestoreMaxSpeed(){
-		m_MaxSpeed = originalMaxSpeed;
+		maxSpeed = originalMaxSpeed;
 	}
 
 	protected bool CheckInTransformArea (Transform transform, float areaSize, LayerMask layers){

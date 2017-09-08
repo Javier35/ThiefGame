@@ -34,19 +34,42 @@ public class FollowerBehavior : MonoBehaviour {
 		hashTranslator = GetComponent<AnimationNameTranslator> ();
 		anim = GetComponent<Animator> ();
 
-		Invoke ("EnableFollow", 0.48f);
+		Invoke ("EnableFollow", 0.43f);
 	}
 
 	void Update () {
 
+
+		positionsList.Add (targetTransform.position);
+		facingRightList.Add (targetVariables.facingRight);
+		targetAirborneList.Add (targetVariables.grounded);
+
+		var currentAnimHash = targetAnimator.GetCurrentAnimatorStateInfo (0).shortNameHash;
+		var currentAnimName = hashTranslator.getNameByHash (currentAnimHash);
+		animationNamesList.Add (currentAnimName);
+
 		if (followEnabled) {
 
+//			var distanceInX = Vector3.Distance(transform.position, new Vector3(targetTransform.position.x, transform.position.y, transform.position.z));
+//
+//			if (targetVariables.grounded && distanceInX <= nonFollowDistance) {
+//				anim.Play ("Idle");
+//			} else {
+//
+//				var positionToBe = positionsList [0];
+//
+//				var distanceToBeX = Vector3.Distance(targetTransform.position, new Vector3(positionToBe.x, targetTransform.position.y, targetTransform.position.z));
+//				if(distanceToBeX < nonFollowDistance){
+//					var behindPlayerPosition = positionToBe.x + (-targetVariables.faceDir * nonFollowDistance); 
+//					positionToBe = new Vector3 (behindPlayerPosition, positionToBe.y, positionToBe.z);
+//				}
+//
+//				transform.position = Vector3.Lerp (transform.position, positionToBe, followSpeed);
+//				anim.Play (animationNamesList [0]);
+//			}
 
-			Vector2 difference = transform.position - positionsList[0];
-			var distanceInX = Mathf.Abs(difference.x);
-
-			transform.position = Vector3.Lerp (transform.position, positionsList[0], followSpeed);
-			anim.Play (animationNamesList[0]);
+			transform.position = Vector3.Lerp (transform.position, positionsList [0], followSpeed);
+			anim.Play (animationNamesList [0]);
 
 			if (facingRightList[0] != facingRight)
 				Flip ();
@@ -56,13 +79,7 @@ public class FollowerBehavior : MonoBehaviour {
 			facingRightList.RemoveAt (0);
 		}
 
-		positionsList.Add (targetTransform.position);
-		facingRightList.Add (targetVariables.m_FacingRight);
-		targetAirborneList.Add (targetVariables.m_Grounded);
 
-		var currentAnimHash = targetAnimator.GetCurrentAnimatorStateInfo (0).shortNameHash;
-		var currentAnimName = hashTranslator.getNameByHash (currentAnimHash);
-		animationNamesList.Add (currentAnimName);
 	}
 
 	void EnableFollow(){

@@ -42,7 +42,7 @@ public class ThrowProjectile : MonoBehaviour {
 
 			var newProjectileBehavior = newProjectile.GetComponent<ProjectileBehavior> ();
 
-			if (GetComponentInParent<PlatformerCharacter2D> ().m_FacingRight) {
+			if (GetComponentInParent<PlatformerCharacter2D> ().facingRight) {
 				newProjectileBehavior.setDirection (1);
 			} else {
 				newProjectileBehavior.setDirection (-1);

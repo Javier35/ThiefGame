@@ -63,9 +63,9 @@ public class PlayerInputController : MonoBehaviour
 
 		if (pushDashFlag && Input.GetKey (KeyCode.C)) {
 
-			if(	!m_Character.m_Grounded ||
-				// (m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == -1) ||
-				// (!m_Character.m_FacingRight && Input.GetAxisRaw ("Horizontal") == 1) ||
+			if(	!m_Character.grounded ||
+				// (m_Character.facingRight && Input.GetAxisRaw ("Horizontal") == -1) ||
+				// (!m_Character.facingRight && Input.GetAxisRaw ("Horizontal") == 1) ||
 				(dashTimer >= 0.3 )	){
 
 				StopDashing (dashCooldown);

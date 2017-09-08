@@ -13,15 +13,15 @@ public class Pushable : Movable {
 
 	void OnCollisionStay2D(Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Player" && playerBehaviorReference.m_Grounded) {
+		if (collision.gameObject.tag == "Player" && playerBehaviorReference.grounded) {
 
 			ContactPoint2D contact = collision.contacts [0];
-			if (Vector3.Dot (contact.normal, Vector3.left) > 0.1 && !playerBehaviorReference.m_FacingRight) {
+			if (Vector3.Dot (contact.normal, Vector3.left) > 0.1 && !playerBehaviorReference.facingRight) {
 
 				playerBehaviorReference.SetMaxSpeed (pushSpeed);
 				rbody.velocity = new Vector2 (-pushSpeed, rbody.velocity.y);
 
-			}else if(Vector3.Dot (contact.normal, Vector3.right) > 0.1 && playerBehaviorReference.m_FacingRight){
+			}else if(Vector3.Dot (contact.normal, Vector3.right) > 0.1 && playerBehaviorReference.facingRight){
 
 				playerBehaviorReference.SetMaxSpeed (pushSpeed);
 				rbody.velocity = new Vector2 (pushSpeed, rbody.velocity.y);

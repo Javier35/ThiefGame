@@ -58,7 +58,7 @@ public class GroundChecker : MonoBehaviour {
 				grounded = false;
 
 		teetering = false;
-		if (characterReference.m_FacingRight) {
+		if (characterReference.facingRight) {
 			if (rayHit1 && !rayHit2)
 					teetering = true;
 		} else {
@@ -66,7 +66,7 @@ public class GroundChecker : MonoBehaviour {
 					teetering = true;
 		}
 		if(grounded)
-			if (characterReference.m_FacingRight) {
+			if (characterReference.facingRight) {
 				if (rayHit1 && !rayHit2 )
 						teetering = true;
 			} else {
