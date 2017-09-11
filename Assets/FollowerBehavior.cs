@@ -18,12 +18,14 @@ public class FollowerBehavior : MonoBehaviour {
 
 
 	//My components
+	[SerializeField] private LayerMask whatIsGround;
 	AnimationNameTranslator hashTranslator;
 	public float nonFollowDistance = 1f;
 	public float followSpeed = 2.4f;
 	bool followEnabled = false;
 	bool facingRight = true;
 	private Animator anim;
+	Transform groundChecker;
 
 
 	void Start () {
@@ -33,40 +35,17 @@ public class FollowerBehavior : MonoBehaviour {
 
 		hashTranslator = GetComponent<AnimationNameTranslator> ();
 		anim = GetComponent<Animator> ();
+		groundChecker = this.transform.Find ("GroundChecker");
 
 		Invoke ("EnableFollow", 0.43f);
 	}
 
+
 	void Update () {
 
-
-		positionsList.Add (targetTransform.position);
-		facingRightList.Add (targetVariables.facingRight);
-		targetAirborneList.Add (targetVariables.grounded);
-
-		var currentAnimHash = targetAnimator.GetCurrentAnimatorStateInfo (0).shortNameHash;
-		var currentAnimName = hashTranslator.getNameByHash (currentAnimHash);
-		animationNamesList.Add (currentAnimName);
+		addToLists ();
 
 		if (followEnabled) {
-
-//			var distanceInX = Vector3.Distance(transform.position, new Vector3(targetTransform.position.x, transform.position.y, transform.position.z));
-//
-//			if (targetVariables.grounded && distanceInX <= nonFollowDistance) {
-//				anim.Play ("Idle");
-//			} else {
-//
-//				var positionToBe = positionsList [0];
-//
-//				var distanceToBeX = Vector3.Distance(targetTransform.position, new Vector3(positionToBe.x, targetTransform.position.y, targetTransform.position.z));
-//				if(distanceToBeX < nonFollowDistance){
-//					var behindPlayerPosition = positionToBe.x + (-targetVariables.faceDir * nonFollowDistance); 
-//					positionToBe = new Vector3 (behindPlayerPosition, positionToBe.y, positionToBe.z);
-//				}
-//
-//				transform.position = Vector3.Lerp (transform.position, positionToBe, followSpeed);
-//				anim.Play (animationNamesList [0]);
-//			}
 
 			transform.position = Vector3.Lerp (transform.position, positionsList [0], followSpeed);
 			anim.Play (animationNamesList [0]);
@@ -95,5 +74,41 @@ public class FollowerBehavior : MonoBehaviour {
 		theScale.x *= -1;
 		this.transform.localScale = theScale;
 		facingRight = !facingRight;
+	}
+
+	void addToLists(){
+
+		var followerGrounded = CheckForFloor (groundChecker, 0.02f, whatIsGround);
+
+		var currentAnimHash = targetAnimator.GetCurrentAnimatorStateInfo (0).shortNameHash;
+		var currentAnimName = hashTranslator.getNameByHash (currentAnimHash);
+
+		if (animationNamesList.Count > 0) {
+			if (animationNamesList [animationNamesList.Count - 1] == "Idle" && currentAnimName == "Idle" && followerGrounded) {
+				animationNamesList.Insert (0, currentAnimName);
+				positionsList.Insert (0, this.transform.position);
+				facingRightList.Insert (0, targetVariables.facingRight);
+				targetAirborneList.Insert (0, targetVariables.grounded);
+			} else {
+				animationNamesList.Add (currentAnimName);
+				positionsList.Add (targetTransform.position);
+				facingRightList.Add (targetVariables.facingRight);
+				targetAirborneList.Add (targetVariables.grounded);
+			}
+		} else {
+			animationNamesList.Add (currentAnimName);
+			positionsList.Add (targetTransform.position);
+			facingRightList.Add (targetVariables.facingRight);
+			targetAirborneList.Add (targetVariables.grounded);
+		}
+			
+	}
+
+	bool CheckForFloor (Transform transform, float areaSize, LayerMask layers){
+
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, areaSize, layers);
+		if (colliders.Length > 0)
+			return true;
+		return false;
 	}
 }
