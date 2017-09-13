@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AnimationNameTranslator.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Extra\Tileset - Samples\Kenneys - Rogue Like\RogueLikeMapGenerator.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Data\ParameterContainer.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Tilemap\Brush\A2X2Brush.cs" />
@@ -80,7 +79,6 @@
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\HandlesEx.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapDrawingUtils.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Utils\TilemapUtils.cs" />
-     <Compile Include="Assets\FollowerBehavior.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Collectible.cs" />
      <Compile Include="Assets\Scripts\Abstracts\DamageManager.cs" />
      <Compile Include="Assets\Scripts\Abstracts\Destroyable.cs" />
@@ -96,6 +94,8 @@
      <Compile Include="Assets\Scripts\Enemy Scripts\EnemyDamageManager.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\EnemyStuff\ProjectileDamageManager.cs" />
      <Compile Include="Assets\Scripts\Enemy Scripts\ItemDropModule.cs" />
+     <Compile Include="Assets\Scripts\Follower Scripts\AnimationNameTranslator.cs" />
+     <Compile Include="Assets\Scripts\Follower Scripts\FollowerBehavior.cs" />
      <Compile Include="Assets\Scripts\Globals\CameraShake.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\BounceOnTop.cs" />
      <Compile Include="Assets\Scripts\Helping Attatchments\CollidersManager.cs" />

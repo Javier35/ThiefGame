@@ -27,16 +27,8 @@ public class LevelManager : MonoBehaviour {
 			return;
 		}
 
-		player.transform.position = currentCheckpoint.transform.position;
-		
-		player.GetComponent<PlayerDamageManager> ().Heal (99);
-		player.GetComponent<PlayerDamageManager> ().BecomeInvincible ();
-
-		HealAllEnemies ();
-		RespawnRespawnables ();
-		ResetMovables ();
-
-		fader.BeginFade (-1);
+		fader.BeginFade (1);
+		StartCoroutine (triggerRespawnBehaviors());
 	}
 
 	public void RespawnRespawnables(){
@@ -65,5 +57,38 @@ public class LevelManager : MonoBehaviour {
 		if (Inventory.GetLives () <= 0)
 			return true;
 		return false;
+	}
+
+	IEnumerator triggerRespawnBehaviors(){
+
+		StopPlayerFollows ();
+		yield return new WaitUntil (()=> fader.alpha == 1);
+
+		player.transform.position = currentCheckpoint.transform.position;
+
+		player.GetComponent<PlayerDamageManager> ().Heal (99);
+		player.GetComponent<PlayerDamageManager> ().BecomeInvincible ();
+
+		HealAllEnemies ();
+		RespawnRespawnables ();
+		ResetMovables ();
+
+		StartPlayerFollows ();
+		fader.BeginFade (-1);
+	}
+
+
+	void StopPlayerFollows(){
+		var followingObjects = FindObjectsOfType<PlayerFollow> ();
+		foreach(PlayerFollow pf in followingObjects){
+			pf.StopFollowing ();
+		}
+	}
+
+	void StartPlayerFollows(){
+		var followingObjects = FindObjectsOfType<PlayerFollow> ();
+		foreach(PlayerFollow pf in followingObjects){
+			pf.StartFollowing ();
+		}
 	}
 }

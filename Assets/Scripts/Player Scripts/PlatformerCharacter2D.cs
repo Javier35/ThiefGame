@@ -9,6 +9,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	[HideInInspector]public Animator animator;
 	[HideInInspector] public bool facingRight = true;
 	[HideInInspector] public float faceDir = 1;
+	[HideInInspector] public Rigidbody2D rbody;
 
 	[SerializeField] private bool airControl = true;
     [SerializeField] private LayerMask m_WhatIsGround;
@@ -18,7 +19,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	private bool damaged = false;
 	GroundChecker groundchecker;
-	Rigidbody2D rbody;
 	Transform m_CeilingCheck;
 	Transform m_EdgeCheck;
 	float originalMaxSpeed;
@@ -125,15 +125,15 @@ public class PlatformerCharacter2D : MonoBehaviour
 	float jumpTimer = 0;
 	float totalJumpTimer = 0;
 	
-	public void JumpBehavior(bool jump, bool afterJump){
+	public void JumpBehavior(bool jump, bool afterJumpPress){
 
-		if( (totalJumpTimer > 0 && afterJump) ||
-		(totalJumpTimer > 0 && totalJumpTimer < 0.1 && !afterJump)){
-			totalJumpTimer += Time.deltaTime;
-			jumpTimer += Time.deltaTime;
+		if( (totalJumpTimer > 0 && afterJumpPress)){
+				
+				totalJumpTimer += Time.deltaTime;
+				jumpTimer += Time.deltaTime;
 		}else{
-			totalJumpTimer = 0;
-			jumpTimer = 0f;
+				totalJumpTimer = 0;
+				jumpTimer = 0f;
 		}
 
 		if(jumpTimer > 0.05f){

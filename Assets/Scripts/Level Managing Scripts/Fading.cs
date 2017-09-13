@@ -6,7 +6,7 @@ public class Fading : MonoBehaviour {
 	public Texture2D fadeOutTexture;
 	public float fadespeed = 5f;
 	private int drawDepth = -1000;
-	private float alpha = 1.0f;
+	public float alpha = 1.0f;
 	private int fadeDir = -1; //-1 is fade in, 1 es fade out
 
 	// Use this for initialization

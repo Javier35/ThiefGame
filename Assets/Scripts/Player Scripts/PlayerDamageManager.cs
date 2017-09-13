@@ -5,10 +5,8 @@ public class PlayerDamageManager : DamageManager {
 
 	private LevelManager levelManager;
 	private PlatformerCharacter2D player;
-	//public BoxCollider2D attackBox;
 	private float invincibilityTime = 1.5f;
 
-	// Use this for initialization
 	void Start () {
 		levelManager = FindObjectOfType<LevelManager> ();
 		player = GetComponent<PlatformerCharacter2D> ();
@@ -37,11 +35,13 @@ public class PlayerDamageManager : DamageManager {
 			if (invincible == false) {
 				health -= damage;
 				animator.SetTrigger("Damage");
+				player.rbody.velocity = new Vector2(0, 0);
 
 				if (health <= 0) {
 					animator.SetTrigger("Death");
+					levelManager.RespawnPlayer ();
 				}
-
+				
 				// Knockback ();
 				BecomeInvincible ();
 			}
