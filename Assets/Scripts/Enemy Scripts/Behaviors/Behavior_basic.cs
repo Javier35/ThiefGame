@@ -20,18 +20,23 @@ public class Behavior_basic : Movable {
 	void Update () {
 		if (checkIfActive()) {
 
-			if (!animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
-				!animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
-
-				if (!CheckInTransformArea(FrontGroundCheck, 0.1f, WhatIsPlatform) || CheckWallCollision ())
-					Flip ();
-
-				Move ();
-
-			} else if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage")) {
-				rbody.velocity = new Vector2 (0, rbody.velocity.y);
+			if (currentBehaviorState == -1) {
+				Invoke ("changeToFirstState", 1);
 			}
 
+			if (currentBehaviorState == 1) {
+				if (!animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
+					!animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
+
+					if (!CheckInTransformArea(FrontGroundCheck, 0.1f, WhatIsPlatform) || CheckWallCollision ())
+						Flip ();
+
+					Move ();
+
+				} else if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage")) {
+					rbody.velocity = new Vector2 (0, rbody.velocity.y);
+				}
+			}
 		}
 	}
 
@@ -51,5 +56,9 @@ public class Behavior_basic : Movable {
 			rbody.velocity = new Vector2 (-moveSpeed, rbody.velocity.y);
 		} else
 			rbody.velocity = new Vector2 (moveSpeed, rbody.velocity.y);
+	}
+
+	void changeToFirstState(){
+		currentBehaviorState = 1;
 	}
 }

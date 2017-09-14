@@ -121,7 +121,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		}
 	}
 
-	float additiveJumpForce = 70;
+	float additiveJumpForce = 27;
 	float jumpTimer = 0;
 	float totalJumpTimer = 0;
 	
@@ -136,12 +136,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 				jumpTimer = 0f;
 		}
 
-		if(jumpTimer > 0.05f){
+		if(jumpTimer > 0.005f){
 			DoJump(additiveJumpForce);
 			jumpTimer = 0f;
 		}
 
-		if(totalJumpTimer >= 0.15){
+		if(totalJumpTimer >= 0.2){
 			totalJumpTimer = 0;
 			jumpTimer = 0;
 		}
@@ -164,7 +164,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	}
 
-	float maxJumpSpeed = 2.7f;
+	float maxJumpSpeed = 3.4f;
 	public void DoJump(float jumpForce){
 
 		grounded = false;

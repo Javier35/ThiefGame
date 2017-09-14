@@ -47,7 +47,8 @@ public class FollowerBehavior : MonoBehaviour {
 
 		if (followEnabled) {
 
-			transform.position = Vector3.Lerp (transform.position, positionsList [0], followSpeed);
+			var posToMoveTo = new Vector3 (positionsList [0].x, positionsList [0].y, positionsList [0].z + 0.1f);
+			transform.position = Vector3.Lerp (transform.position, posToMoveTo, followSpeed);
 			anim.Play (animationNamesList [0]);
 
 			if (facingRightList[0] != facingRight)
