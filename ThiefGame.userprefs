@@ -1,11 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player Scripts/PlatformerCharacter2D.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy Scripts/Behaviors/Behavior_basic.cs">
     <Files>
-      <File FileName="Assets/Scripts/Player Scripts/PlatformerCharacter2D.cs" Line="166" Column="2" />
-      <File FileName="Assets/Scripts/Player Scripts/PlayerDamageManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Level Managing Scripts/DeadzoneFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Player Scripts/PlayerInputController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enemy Scripts/Behaviors/Behavior_basic.cs" Line="32" Column="15" />
+      <File FileName="Assets/Scripts/Player Scripts/PlatformerCharacter2D.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Follower Scripts/FollowerBehavior.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Enemy Scripts/Behaviors/Behavior_drillbird.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

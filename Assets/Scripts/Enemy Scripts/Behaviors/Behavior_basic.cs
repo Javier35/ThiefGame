@@ -20,11 +20,11 @@ public class Behavior_basic : Movable {
 	void Update () {
 		if (checkIfActive()) {
 
-			if (currentBehaviorState == -1) {
-				Invoke ("changeToFirstState", 1);
-			}
-
-			if (currentBehaviorState == 1) {
+//			if (currentBehaviorState == -1) {
+//				Invoke ("changeToFirstState", 1);
+//			}
+//
+//			if (currentBehaviorState == 1) {
 				if (!animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
 					!animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 
@@ -36,7 +36,7 @@ public class Behavior_basic : Movable {
 				} else if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage")) {
 					rbody.velocity = new Vector2 (0, rbody.velocity.y);
 				}
-			}
+//			}
 		}
 	}
 
