@@ -20,6 +20,7 @@ public class BackgroundScroll : MonoBehaviour {
 		cameraTransform = Camera.main.transform;
 		lastCameraX = cameraTransform.position.x;
 		layers = new Transform[transform.childCount];
+		
 		for (int i = 0; i < transform.childCount; i++)
 			layers [i] = transform.GetChild (i);
 
@@ -51,7 +52,7 @@ public class BackgroundScroll : MonoBehaviour {
 	private void ScrollRight(){
 		layers [leftIndex].position = new Vector3 (layers [rightIndex].position.x + backgroundSize, transform.position.y, transform.position.z);
 		rightIndex = leftIndex;
-		leftIndex++;
+		leftIndex--;
 		if (leftIndex == layers.Length)
 			leftIndex = 0;
 	}

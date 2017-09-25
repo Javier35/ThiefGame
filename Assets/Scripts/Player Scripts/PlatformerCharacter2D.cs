@@ -37,7 +37,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		// terrainChecker = GetComponentInChildren<SpecialTerrainChecker>();
     }
 		
-    private void LateUpdate()
+    void FixedUpdate()
     {
 		grounded = groundchecker.grounded;
 		animator.SetFloat ("Yspeed", rbody.velocity.y);
@@ -121,7 +121,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		}
 	}
 
-	float additiveJumpForce = 27;
+	float additiveJumpForce = 36;
 	float jumpTimer = 0;
 	float totalJumpTimer = 0;
 	
@@ -136,7 +136,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 				jumpTimer = 0f;
 		}
 
-		if(jumpTimer > 0.005f){
+		if(jumpTimer > 0.0001f){
 			DoJump(additiveJumpForce);
 			jumpTimer = 0f;
 		}
@@ -164,7 +164,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 
 	}
 
-	float maxJumpSpeed = 3.4f;
+	float maxJumpSpeed = 3.0f;
 	public void DoJump(float jumpForce){
 
 		grounded = false;

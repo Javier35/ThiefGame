@@ -12,6 +12,12 @@ public class LevelManager : MonoBehaviour {
 	public ArrayList respawnables = new ArrayList ();
 	public ArrayList movables = new ArrayList ();
 
+	
+	void Awake()
+	{
+		Application.targetFrameRate = 30;
+	}
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find ("Cricket");
