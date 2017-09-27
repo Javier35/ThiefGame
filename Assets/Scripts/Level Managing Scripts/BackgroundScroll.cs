@@ -9,7 +9,7 @@ public class BackgroundScroll : MonoBehaviour {
 	private float backgroundSize;
 	private Transform cameraTransform;
 	private Transform[] layers;
-	private float viewZone = 10;
+	public float viewZone = 10;
 	private int leftIndex;
 	private int rightIndex;
 
@@ -42,7 +42,7 @@ public class BackgroundScroll : MonoBehaviour {
 	}
 
 	private void ScrollLeft(){
-		layers [rightIndex].position = new Vector3 (layers [leftIndex].position.x - backgroundSize, transform.position.y, transform.position.z);
+		layers [rightIndex].position = new Vector3 (layers [leftIndex].position.x - viewZone, transform.position.y, transform.position.z);
 		leftIndex = rightIndex;
 		rightIndex--;
 		if (rightIndex < 0)
@@ -50,9 +50,9 @@ public class BackgroundScroll : MonoBehaviour {
 	}
 
 	private void ScrollRight(){
-		layers [leftIndex].position = new Vector3 (layers [rightIndex].position.x + backgroundSize, transform.position.y, transform.position.z);
+		layers [leftIndex].position = new Vector3 (layers [rightIndex].position.x + viewZone, transform.position.y, transform.position.z);
 		rightIndex = leftIndex;
-		leftIndex--;
+		leftIndex++;
 		if (leftIndex == layers.Length)
 			leftIndex = 0;
 	}

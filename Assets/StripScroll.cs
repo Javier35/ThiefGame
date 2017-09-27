@@ -16,9 +16,11 @@ public class StripScroll : MonoBehaviour {
 	private float lastCameraX;
 
 	private void Start(){
+		backgroundSize = GetComponentInChildren<SpriteRenderer> ().bounds.size.x;
 		cameraTransform = Camera.main.transform;
 		lastCameraX = cameraTransform.position.x;
 		layers = new Transform[transform.childCount];
+
 		for (int i = 0; i < transform.childCount; i++)
 			layers [i] = transform.GetChild (i);
 
@@ -34,7 +36,7 @@ public class StripScroll : MonoBehaviour {
 
 		if(cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone));
 			ScrollLeft();
-		if(cameraTransform.position.x > (layers[leftIndex].transform.position.x - viewZone));
+		if(cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone));
 			ScrollRight();
 	}
 
@@ -49,9 +51,9 @@ public class StripScroll : MonoBehaviour {
 
 	void ScrollRight(){
 		int lastRight = leftIndex;
-		layers[leftIndex].position = Vector3.right * (layers[leftIndex].position.x - backgroundSize);
+		layers[leftIndex].position = Vector3.right * (layers[leftIndex].position.x + backgroundSize);
 		rightIndex = leftIndex;
-		leftIndex--;
+		leftIndex++;
 		if(leftIndex == layers.Length)
 			leftIndex = 0;
 	}
