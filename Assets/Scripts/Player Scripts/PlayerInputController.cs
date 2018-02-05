@@ -17,6 +17,8 @@ public class PlayerInputController : MonoBehaviour
 	Animator armAnimator;
 	float inputAxis;
 
+	public FollowerBehavior currentFollower;
+
 	private void Awake()
 	{
 		m_Character = GetComponent<PlatformerCharacter2D>();
@@ -47,6 +49,9 @@ public class PlayerInputController : MonoBehaviour
 
 		if(Input.GetKeyDown(KeyCode.R))
 			SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
+
+		if(Input.GetKeyDown(KeyCode.V))
+			currentFollower.StartAssist(this.transform.position, m_Character.facingRight);
 
 		if (m_Character.animator.GetBool ("InGround") && Input.GetAxisRaw ("Horizontal") != 0)
 			m_Character.animator.SetBool ("Run", true);

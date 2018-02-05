@@ -13,7 +13,7 @@ public class AnimationNameTranslator : MonoBehaviour {
 		animationHash.Add(Animator.StringToHash ("Dash") , "Dash");
 		animationHash.Add(Animator.StringToHash ("Jump") , "Jump");
 		animationHash.Add(Animator.StringToHash ("Fall") , "Fall");
-		animationHash.Add(Animator.StringToHash ("Death") , "Death");
+		// animationHash.Add(Animator.StringToHash ("Death") , "Death");
 	}
 
 	public string getNameByHash(int hash){
@@ -22,7 +22,6 @@ public class AnimationNameTranslator : MonoBehaviour {
 		{
 			return animationHash[hash];
 		}
-
 		return "Idle";
 	}
 }
