@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyDamageManager : DamageManager {
 
-	private ItemDropModule itemDropper;
+	// private ItemDropModule itemDropper;
 	private LevelManager levelManager;
 	private GameObject player;
 	public GameObject deathPoof;
@@ -12,11 +12,10 @@ public class EnemyDamageManager : DamageManager {
 	void Start () {
 		player = GameObject.Find ("Cricket");
 		levelManager = GameObject.Find ("LevelManager").GetComponent<LevelManager>();
-		itemDropper = gameObject.GetComponent<ItemDropModule> ();
+		// itemDropper = gameObject.GetComponent<ItemDropModule> ();
 	}
 
 	public override void ReceiveDamage(int damage){
-		//Debug.Log ("ouch");
 		health -= damage;
 
 		if (health > 0) {

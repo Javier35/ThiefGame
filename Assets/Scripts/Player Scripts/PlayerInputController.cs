@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerInputController : MonoBehaviour
 {
 	private PlatformerCharacter2D m_Character;
-	private bool m_Jump;
-	private bool afterJumpPress;
+	private bool jump;
+	private bool jumpHold;
 	private bool m_Dash;
 
 	private bool dashEnabled = true;
@@ -22,35 +22,36 @@ public class PlayerInputController : MonoBehaviour
 	private void Awake()
 	{
 		m_Character = GetComponent<PlatformerCharacter2D>();
+		armAnimator = transform.Find ("Arm").GetComponent<Animator>();
 	}
 
 
-	private void LateUpdate()
+	private void Update()
 	{
-		armAnimator = transform.Find ("Arm").GetComponent<Animator>();
-
 		InterpreteKeys ();
 		SetDashingValue ();
 		SetAttackAnimation ();
-
 		inputAxis = Input.GetAxisRaw ("Horizontal");
+	}
 
+	void FixedUpdate(){
 		m_Character.Move(inputAxis, m_Dash);
-		m_Character.JumpBehavior(m_Jump, afterJumpPress);
-		m_Jump = false;
+		m_Character.GravityJump(jump, jumpHold);
+		jump = false;
+		jumpHold = false;
 	}
 
 	private void InterpreteKeys () {
 
-		if (!m_Jump)
-			m_Jump = Input.GetKeyDown (KeyCode.Z) ? true : false;
+		if(Input.GetKeyDown (KeyCode.R))
+			jump = true;
+		else if(Input.GetKey (KeyCode.R))
+			jumpHold = true;
 
-		afterJumpPress = Input.GetKey (KeyCode.Z) ? true : false;
-
-		if(Input.GetKeyDown(KeyCode.R))
+		if(Input.GetKeyDown(KeyCode.O))
 			SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex ) ;
 
-		if(Input.GetKeyDown(KeyCode.V))
+		if(Input.GetKeyDown(KeyCode.W))
 			currentFollower.StartAssist(this.transform.position, m_Character.facingRight);
 
 		if (m_Character.animator.GetBool ("InGround") && Input.GetAxisRaw ("Horizontal") != 0)
@@ -62,11 +63,11 @@ public class PlayerInputController : MonoBehaviour
 	float dashCooldown = 0.05f;
 	private void SetDashingValue(){
 
-		if (!pushDashFlag && dashEnabled && Input.GetKeyDown (KeyCode.C)) {
+		if (!pushDashFlag && dashEnabled && Input.GetKeyDown (KeyCode.Q)) {
 			pushDashFlag = true;		
 		}
 
-		if (pushDashFlag && Input.GetKey (KeyCode.C)) {
+		if (pushDashFlag && Input.GetKey (KeyCode.Q)) {
 
 			if(	!m_Character.grounded ||
 				// (m_Character.facingRight && Input.GetAxisRaw ("Horizontal") == -1) ||
@@ -81,7 +82,7 @@ public class PlayerInputController : MonoBehaviour
 			m_Dash = true;
 			dashTimer += Time.deltaTime;
 
-		} else if(pushDashFlag && Input.GetKeyUp (KeyCode.C)){
+		} else if(pushDashFlag && Input.GetKeyUp (KeyCode.Q)){
 
 			StopDashing (dashCooldown);
 			
@@ -95,7 +96,7 @@ public class PlayerInputController : MonoBehaviour
 
 	void SetAttackAnimation(){
 
-		if (Input.GetKeyDown (KeyCode.X) && 
+		if (Input.GetKeyDown (KeyCode.E) && 
 			!m_Character.animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") &&
 			!m_Character.animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 

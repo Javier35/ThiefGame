@@ -7,4 +7,8 @@ public class PoofBehavior : MonoBehaviour {
 	public void DestroySelf(){
 		Destroy (this.gameObject);
 	}
+
+	public void DeactivateSelf(){
+		this.gameObject.SetActive(false);
+	}
 }

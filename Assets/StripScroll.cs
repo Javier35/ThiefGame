@@ -34,14 +34,14 @@ public class StripScroll : MonoBehaviour {
 		transform.position += Vector3.right * (deltaX * parallaxSpeed);
 		lastCameraX = cameraTransform.position.x;
 
-		if(cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone));
+		if(cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
 			ScrollLeft();
-		if(cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone));
+		if(cameraTransform.position.x > (layers[rightIndex].transform.position.x - viewZone))
 			ScrollRight();
 	}
 
 	void ScrollLeft(){
-		int lastRight = rightIndex;
+		// int lastRight = rightIndex;
 		layers[rightIndex].position = Vector3.right * (layers[leftIndex].position.x - backgroundSize);
 		leftIndex = rightIndex;
 		rightIndex--;
@@ -50,7 +50,7 @@ public class StripScroll : MonoBehaviour {
 	}
 
 	void ScrollRight(){
-		int lastRight = leftIndex;
+		// int lastRight = leftIndex;
 		layers[leftIndex].position = Vector3.right * (layers[leftIndex].position.x + backgroundSize);
 		rightIndex = leftIndex;
 		leftIndex++;

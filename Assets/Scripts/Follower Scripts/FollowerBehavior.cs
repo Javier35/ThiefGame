@@ -11,11 +11,12 @@ public class FollowerBehavior : MonoBehaviour {
 	List<bool> facingRightList = new List<bool>();
 	List<bool> targetAirborneList = new List<bool>();
 
-	public GameObject targetObject;
+	[SerializeField] private GameObject targetObject;
+	[SerializeField] private GameObject AssistPoof;
 	private PlatformerCharacter2D targetVariables;
 	private Transform targetTransform;
 	private Animator targetAnimator;
-	private SpriteRenderer renderer;
+	private SpriteRenderer spriteRenderer;
 
 	//My components
 	[SerializeField] private LayerMask whatIsGround;
@@ -23,7 +24,7 @@ public class FollowerBehavior : MonoBehaviour {
 	public float nonFollowDistance = 1f;
 	public float followSpeed = 2.4f;
 	bool followEnabled = false;
-	bool facingRight = true;
+	public bool facingRight = true;
 	private Animator anim;
 	Transform groundChecker;
 
@@ -33,16 +34,13 @@ public class FollowerBehavior : MonoBehaviour {
 		targetAnimator = targetObject.GetComponent<Animator> ();
 		targetVariables = targetObject.GetComponent<PlatformerCharacter2D> ();
 
-		renderer = GetComponent<SpriteRenderer>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		hashTranslator = GetComponent<AnimationNameTranslator> ();
 		anim = GetComponent<Animator> ();
 		groundChecker = this.transform.Find ("GroundChecker");
 
 		Invoke ("EnableFollow", 0.43f);
 	}
-
-	bool currentActionIsAssist = false;
-	bool lastActionWasAssist = false;
 
 	void Update () {
 
@@ -52,9 +50,9 @@ public class FollowerBehavior : MonoBehaviour {
 
 			if(anim.GetBool("Assist") || anim.GetCurrentAnimatorStateInfo(0).IsName("Assist")){
 				AssistBehavior();
-				renderer.sortingOrder = 1;
+				spriteRenderer.sortingOrder = 1;
 			}else{
-				renderer.sortingOrder = 0;
+				spriteRenderer.sortingOrder = -1;
 				var posToMoveTo = new Vector3 (positionsList [0].x, positionsList [0].y, positionsList [0].z + 0.1f);
 				transform.position = Vector3.Lerp (transform.position, posToMoveTo, followSpeed);
 				
@@ -74,9 +72,14 @@ public class FollowerBehavior : MonoBehaviour {
 	bool assistFacingRight;
 
 	public void StartAssist(Vector3 position, bool facingRight){
-		anim.SetTrigger("Assist");
-		assistPosition = position;
-		assistFacingRight = facingRight;
+
+		if(!anim.GetCurrentAnimatorStateInfo(0).IsName("Assist")){
+			anim.SetTrigger("Assist");
+			assistPosition = position;
+			assistFacingRight = facingRight;
+
+			Instantiate(AssistPoof, positionsList [0], this.transform.rotation);
+		}
 	}
 
 	void AssistBehavior(){

@@ -5,13 +5,13 @@ using UnityEngine;
 public class MatchParentRenderer : MonoBehaviour {
 
 	public SpriteRenderer parentRenderer;
-	SpriteRenderer renderer;
+	SpriteRenderer spriteRenderer;
 
 	void Start () {
-		renderer = GetComponent<SpriteRenderer>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	void Update () {
-		renderer.enabled = parentRenderer.enabled;
+		spriteRenderer.enabled = parentRenderer.enabled;
 	}
 }

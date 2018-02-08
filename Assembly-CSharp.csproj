@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Arrow.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Extra\Tileset - Samples\Kenneys - Rogue Like\RogueLikeMapGenerator.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Data\ParameterContainer.cs" />
      <Compile Include="Assets\CreativeSpore\SuperTilemapEditor\Scripts\Tilemap\Brush\A2X2Brush.cs" />

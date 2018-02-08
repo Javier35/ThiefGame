@@ -23,7 +23,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	Transform m_EdgeCheck;
 	float originalMaxSpeed;
 	const float k_GroundedRadius = .15f;
-	public float m_JumpForce = 95f;
+	public float m_JumpForce = 10f;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 		// terrainChecker = GetComponentInChildren<SpecialTerrainChecker>();
     }
 		
-    void FixedUpdate()
+    void Update()
     {
 		grounded = groundchecker.grounded;
 		animator.SetFloat ("Yspeed", rbody.velocity.y);
@@ -120,49 +120,33 @@ public class PlatformerCharacter2D : MonoBehaviour
 			rbody.AddForce (new Vector2 (0f, m_KnockbackHeight));
 		}
 	}
-
-	float additiveJumpForce = 36;
-	float jumpTimer = 0;
-	float totalJumpTimer = 0;
 	
-	public void JumpBehavior(bool jump, bool afterJumpPress){
+	bool beganJumping = false;
 
-		if( (totalJumpTimer > 0 && afterJumpPress)){
-				
-				totalJumpTimer += Time.deltaTime;
-				jumpTimer += Time.deltaTime;
-		}else{
-				totalJumpTimer = 0;
-				jumpTimer = 0f;
-		}
-
-		if(jumpTimer > 0.0001f){
-			DoJump(additiveJumpForce);
-			jumpTimer = 0f;
-		}
-
-		if(totalJumpTimer >= 0.2){
-			totalJumpTimer = 0;
-			jumpTimer = 0;
-		}
-		
-		if (grounded && jump && animator.GetBool ("InGround")
+	public void GravityJump(bool jump, bool jumpHold){
+		if(jump){
+			if (grounded && animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")) {
+				rbody.velocity = new Vector2(rbody.velocity.x, 0);
+				DoJump (m_JumpForce);
+				beganJumping = true;
+			}
+		} else if(!jumpHold && beganJumping && animator.GetFloat("Yspeed") >= 0){
+			rbody.velocity = new Vector2(rbody.velocity.x, 0);
+			beganJumping = false;
+		}
 
-				DoJump (additiveJumpForce);
-				totalJumpTimer += Time.deltaTime;
-				jumpTimer += Time.deltaTime;
 
-		} else if (!grounded && !jump && !animator.GetBool ("InGround")
+		if (!grounded && !animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Death")
 			&& animator.GetFloat("Yspeed") < 0) {
 
 				DoFall ();
 		}
-
 	}
+
 
 	float maxJumpSpeed = 3.0f;
 	public void DoJump(float jumpForce){
@@ -170,10 +154,10 @@ public class PlatformerCharacter2D : MonoBehaviour
 		grounded = false;
 		animator.SetBool ("InGround", false);
 		animator.SetBool ("Jump", true);
-		rbody.AddForce (new Vector2 (0f, jumpForce));
+		rbody.AddForce (new Vector2 (0f, jumpForce), ForceMode2D.Impulse);
 
-		if(rbody.velocity.y > maxJumpSpeed)
-			rbody.velocity = new Vector2(rbody.velocity.x, maxJumpSpeed);
+		// if(rbody.velocity.y > maxJumpSpeed)
+		// 	rbody.velocity = new Vector2(rbody.velocity.x, maxJumpSpeed);
 	}
 
 	public void DoFall(){

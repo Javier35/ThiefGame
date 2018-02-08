@@ -6,7 +6,7 @@ public class BackgroundScroll : MonoBehaviour {
 
 	public float paralaxSpeed = 1;
 
-	private float backgroundSize;
+	// private float backgroundSize;
 	private Transform cameraTransform;
 	private Transform[] layers;
 	public float viewZone = 10;
@@ -16,7 +16,7 @@ public class BackgroundScroll : MonoBehaviour {
 	private float lastCameraX;
 
 	private void Start(){
-		backgroundSize = GetComponentInChildren<SpriteRenderer> ().bounds.size.x;
+		// backgroundSize = GetComponentInChildren<SpriteRenderer> ().bounds.size.x;
 		cameraTransform = Camera.main.transform;
 		lastCameraX = cameraTransform.position.x;
 		layers = new Transform[transform.childCount];
