@@ -1,39 +1,33 @@
 fileFormatVersion: 2
-guid: 00bdfe0dffefb494c822912aebb79ac7
-timeCreated: 1517774987
+guid: 9a4ffd77d0460804e89b07b26945b027
+timeCreated: 1525321922
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Crow_0
-    21300002: Crow_1
-    21300004: Crow_2
-    21300006: Crow_3
-    21300008: Crow_4
-    21300010: Crow_5
-    21300012: Crow_6
-    21300014: Crow_7
-    21300016: Crow_8
-    21300018: Crow_9
-    21300020: Crow_10
-    21300022: Crow_11
-    21300024: Crow_12
-    21300026: Crow_13
-    21300028: Crow_14
-    21300030: Crow_15
-    21300032: Crow_16
-    21300034: Crow_17
-    21300036: Crow_18
-    21300038: Crow_19
-    21300040: Crow_20
-    21300042: Crow_21
-    21300044: Crow_22
-    21300046: Crow_23
-    21300048: Crow_24
-    21300050: Crow_25
-    21300052: Crow_26
-    21300054: Crow_27
-    21300056: Crow_28
-    21300058: Crow_29
+    21300000: Crow-Sheet_0
+    21300002: Crow-Sheet_1
+    21300004: Crow-Sheet_2
+    21300006: Crow-Sheet_3
+    21300008: Crow-Sheet_4
+    21300010: Crow-Sheet_5
+    21300012: Crow-Sheet_6
+    21300014: Crow-Sheet_7
+    21300016: Crow-Sheet_8
+    21300018: Crow-Sheet_9
+    21300020: Crow-Sheet_10
+    21300022: Crow-Sheet_11
+    21300024: Crow-Sheet_12
+    21300026: Crow-Sheet_13
+    21300028: Crow-Sheet_14
+    21300030: Crow-Sheet_15
+    21300032: Crow-Sheet_16
+    21300034: Crow-Sheet_17
+    21300036: Crow-Sheet_18
+    21300038: Crow-Sheet_19
+    21300040: Crow-Sheet_20
+    21300042: Crow-Sheet_21
+    21300044: Crow-Sheet_22
+    21300046: Crow-Sheet_23
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -86,7 +80,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -94,7 +88,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -102,7 +96,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: iPhone
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -110,7 +104,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: Android
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -118,7 +112,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
   - buildTarget: WebGL
-    maxTextureSize: 4096
+    maxTextureSize: 2048
     textureFormat: -1
     textureCompression: 2
     compressionQuality: 50
@@ -129,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Crow_0
+      name: Crow-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -143,7 +137,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_1
+      name: Crow-Sheet_1
       rect:
         serializedVersion: 2
         x: 80
@@ -157,7 +151,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_2
+      name: Crow-Sheet_2
       rect:
         serializedVersion: 2
         x: 160
@@ -171,7 +165,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_3
+      name: Crow-Sheet_3
       rect:
         serializedVersion: 2
         x: 240
@@ -185,7 +179,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_4
+      name: Crow-Sheet_4
       rect:
         serializedVersion: 2
         x: 320
@@ -199,7 +193,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_5
+      name: Crow-Sheet_5
       rect:
         serializedVersion: 2
         x: 400
@@ -213,7 +207,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_6
+      name: Crow-Sheet_6
       rect:
         serializedVersion: 2
         x: 480
@@ -227,7 +221,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_7
+      name: Crow-Sheet_7
       rect:
         serializedVersion: 2
         x: 560
@@ -241,7 +235,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_8
+      name: Crow-Sheet_8
       rect:
         serializedVersion: 2
         x: 640
@@ -255,7 +249,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_9
+      name: Crow-Sheet_9
       rect:
         serializedVersion: 2
         x: 720
@@ -269,7 +263,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_10
+      name: Crow-Sheet_10
       rect:
         serializedVersion: 2
         x: 800
@@ -283,7 +277,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_11
+      name: Crow-Sheet_11
       rect:
         serializedVersion: 2
         x: 880
@@ -297,7 +291,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_12
+      name: Crow-Sheet_12
       rect:
         serializedVersion: 2
         x: 960
@@ -311,7 +305,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_13
+      name: Crow-Sheet_13
       rect:
         serializedVersion: 2
         x: 1040
@@ -325,7 +319,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_14
+      name: Crow-Sheet_14
       rect:
         serializedVersion: 2
         x: 1120
@@ -339,7 +333,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_15
+      name: Crow-Sheet_15
       rect:
         serializedVersion: 2
         x: 1200
@@ -353,7 +347,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_16
+      name: Crow-Sheet_16
       rect:
         serializedVersion: 2
         x: 1280
@@ -367,7 +361,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_17
+      name: Crow-Sheet_17
       rect:
         serializedVersion: 2
         x: 1360
@@ -381,7 +375,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_18
+      name: Crow-Sheet_18
       rect:
         serializedVersion: 2
         x: 1440
@@ -395,7 +389,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_19
+      name: Crow-Sheet_19
       rect:
         serializedVersion: 2
         x: 1520
@@ -409,7 +403,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_20
+      name: Crow-Sheet_20
       rect:
         serializedVersion: 2
         x: 1600
@@ -423,7 +417,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_21
+      name: Crow-Sheet_21
       rect:
         serializedVersion: 2
         x: 1680
@@ -437,7 +431,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_22
+      name: Crow-Sheet_22
       rect:
         serializedVersion: 2
         x: 1760
@@ -451,94 +445,10 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Crow_23
+      name: Crow-Sheet_23
       rect:
         serializedVersion: 2
         x: 1840
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Crow_24
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Crow_25
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Crow_26
-      rect:
-        serializedVersion: 2
-        x: 2080
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Crow_27
-      rect:
-        serializedVersion: 2
-        x: 2160
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Crow_28
-      rect:
-        serializedVersion: 2
-        x: 2240
-        y: 0
-        width: 80
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Crow_29
-      rect:
-        serializedVersion: 2
-        x: 2320
         y: 0
         width: 80
         height: 80
