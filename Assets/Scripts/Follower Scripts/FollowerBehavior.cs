@@ -23,7 +23,7 @@ public class FollowerBehavior : MonoBehaviour {
 	AnimationNameTranslator hashTranslator;
 	public float nonFollowDistance = 1f;
 	public float followSpeed = 2.4f;
-	bool followEnabled = false;
+	bool followEnabled = true;
 	public bool facingRight = true;
 	private Animator anim;
 	Transform groundChecker;
@@ -39,10 +39,11 @@ public class FollowerBehavior : MonoBehaviour {
 		anim = GetComponent<Animator> ();
 		groundChecker = this.transform.Find ("GroundChecker");
 
-		Invoke ("EnableFollow", 0.43f);
+		for(int i = 0; i <= 18; i++)
+			addToLists();
 	}
 
-	void Update () {
+	void LateUpdate () {
 
 		addToLists ();
 
@@ -107,23 +108,15 @@ public class FollowerBehavior : MonoBehaviour {
 	void addToLists(){
 
 		var followerGrounded = CheckForFloor (groundChecker, 0.02f, whatIsGround);
-
 		var currentAnimHash = targetAnimator.GetCurrentAnimatorStateInfo (0).shortNameHash;
 		var currentAnimName = hashTranslator.getNameByHash (currentAnimHash);
 
-		if (animationNamesList.Count > 0) {
-			if (currentAnimName == "Idle" && followerGrounded) {
-				animationNamesList.Insert (0, currentAnimName);
-				positionsList.Insert (0, positionsList[0]);
-				facingRightList.Insert (0, targetVariables.facingRight);
-				targetAirborneList.Insert (0, targetVariables.grounded);
-			} else {
-				animationNamesList.Add (currentAnimName);
-				positionsList.Add (targetTransform.position);
-				facingRightList.Add (targetVariables.facingRight);
-				targetAirborneList.Add (targetVariables.grounded);
-			}
-		} else {
+		if ((currentAnimName == "Idle" || currentAnimName == "Crouch") && followerGrounded && animationNamesList[0] != "Dash") {
+			animationNamesList.Insert (0, currentAnimName);
+			positionsList.Insert (0, positionsList[0]);
+			facingRightList.Insert (0, targetVariables.facingRight);
+			targetAirborneList.Insert (0, targetVariables.grounded);
+		}else{
 			animationNamesList.Add (currentAnimName);
 			positionsList.Add (targetTransform.position);
 			facingRightList.Add (targetVariables.facingRight);

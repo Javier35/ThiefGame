@@ -12,14 +12,12 @@ public class PlatformerCharacter2D : MonoBehaviour
 	[HideInInspector] public Rigidbody2D rbody;
 
 	[SerializeField] private bool airControl = true;
-    [SerializeField] private LayerMask m_WhatIsGround;
 	[SerializeField] private float m_KnockbackHeight = 300f;
 	[SerializeField]float dashMove = 1.7f;
 	[SerializeField] private float maxSpeed = 3.9f;
 
 	private bool damaged = false;
 	GroundChecker groundchecker;
-	Transform m_CeilingCheck;
 	Transform m_EdgeCheck;
 	float originalMaxSpeed;
 	const float k_GroundedRadius = .15f;
@@ -29,7 +27,6 @@ public class PlatformerCharacter2D : MonoBehaviour
     {
         // Setting up references.
 //        m_GroundCheck = transform.Find("GroundCheck");
-        m_CeilingCheck = transform.Find("CeilingCheck");
         animator = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
 		originalMaxSpeed = maxSpeed;
@@ -46,29 +43,20 @@ public class PlatformerCharacter2D : MonoBehaviour
     }
 
 
-	public void Move(float move, bool dash){
+	public void Move(float move, bool dash, bool crouch){
 
         if (animator.GetBool("InGround") && move != 0)
             animator.SetBool("Run", true);
 
-        //only control the player if grounded or airControl is turned on
         if (grounded || airControl)
         {
 			MovementBehavior (move, dash);
         }
+
+		animator.SetBool("Crouch", crouch);
     }
 
-	bool lastDash = false;
 	void MovementBehavior(float move, bool dash){
-
-		if (lastDash == true && dash == false) {
-			var underCeilng = CheckInTransformArea (m_CeilingCheck, .1f, m_WhatIsGround);
-
-			if (underCeilng) {
-				dash = true;
-				animator.SetBool ("Dash", true);
-			}
-		}
 
 		if (dash) {
 			if(move != 0){
@@ -81,8 +69,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 		if (animator.GetCurrentAnimatorStateInfo (0).IsName ("Damage") || animator.GetCurrentAnimatorStateInfo (0).IsName ("Death")) {
 			move = 0;
 		}
-
-		lastDash = dash;
 
 		SetPlayerVelocityX (move);
 		FlipToFaceVelocity(move);
@@ -124,6 +110,7 @@ public class PlatformerCharacter2D : MonoBehaviour
 	bool beganJumping = false;
 
 	public void GravityJump(bool jump, bool jumpHold){
+
 		if(jump){
 			if (grounded && animator.GetBool ("InGround")
 			&& !animator.GetCurrentAnimatorStateInfo(0).IsName("Damage")
@@ -132,7 +119,8 @@ public class PlatformerCharacter2D : MonoBehaviour
 				DoJump (m_JumpForce);
 				beganJumping = true;
 			}
-		} else if(!jumpHold && beganJumping && animator.GetFloat("Yspeed") >= 0){
+		} 
+		else if(!jumpHold && beganJumping && animator.GetFloat("Yspeed") >= 0){
 			rbody.velocity = new Vector2(rbody.velocity.x, 0);
 			beganJumping = false;
 		}
@@ -148,7 +136,6 @@ public class PlatformerCharacter2D : MonoBehaviour
 	}
 
 
-	float maxJumpSpeed = 3.0f;
 	public void DoJump(float jumpForce){
 
 		grounded = false;

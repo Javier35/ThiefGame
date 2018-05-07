@@ -13,6 +13,7 @@ public class AnimationNameTranslator : MonoBehaviour {
 		animationHash.Add(Animator.StringToHash ("Dash") , "Dash");
 		animationHash.Add(Animator.StringToHash ("Jump") , "Jump");
 		animationHash.Add(Animator.StringToHash ("Fall") , "Fall");
+		animationHash.Add(Animator.StringToHash ("Crouch") , "Crouch");
 		// animationHash.Add(Animator.StringToHash ("Death") , "Death");
 	}
 
